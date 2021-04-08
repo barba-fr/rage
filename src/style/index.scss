@@ -1,0 +1,625 @@
+@import "vars.scss";
+@import "reset.scss";
+@import "framework.scss";
+
+html {
+  font-size: 22px;
+}
+
+body {
+  background-color: $bg;
+  color: $grey;
+  font-family: 'Teko', sans-serif;
+}
+
+#app {
+  padding: 40px 0;
+  position: relative;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: flex-start;
+  padding: $marge*2;
+  border-radius: 2px;
+}
+
+#header-left {
+  width: 40%;
+  margin-right: $marge*4;
+}
+
+#logo-rage {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+#liens {
+  display: flex;
+  margin-top: $marge/2;
+
+  a, #slogan {
+    display: flex;
+    align-items: center;
+    margin-right: $marge*2;
+    color: $grey;
+    font-size: 1.3rem;
+
+    &:hover {
+      color: $grey;
+    }
+
+    svg {
+      fill: $grey;
+      font-size: 1.3rem;
+      margin-right: $marge/2;
+    }
+  }
+  
+  #slogan {
+    white-space: nowrap;
+  }
+
+  #discord-link {
+    margin-left: auto;
+  }
+
+  #log-link {
+    margin-right: 0;
+  }
+}
+
+
+#logs-logo {
+  width: 30px;
+  margin-right: $marge/2;
+}
+
+#logo-horde {
+  display: inline-block;
+  margin-right: $marge/2;
+}
+
+#description {
+  flex: 1;
+  position: relative;
+  top: -7px;
+}
+
+/* ROSTERS */
+#rosters {
+  display: flex;
+  margin-top: $marge*2;
+}
+
+.roster {
+  width: 50%;
+}
+
+#bloodrage {
+  margin-right: $marge;
+}
+
+#stormrage {
+  margin-left: $marge;
+}
+
+.roster-header, .progress-header {
+
+  .help {
+    line-height: .9;
+  }
+  
+  h1 {
+    line-height: .9;
+    text-shadow: 3px 3px 6px #000;
+  }
+
+}
+
+/* BLOOD & STORM */
+.roster-header, .progress-header {
+  padding: $marge*2;
+}
+
+.recruitment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 10px 20px;
+}
+
+.recruitment-body {
+  width: 100%;
+  padding: 20px 20px 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.class-status {
+  position: relative;
+  width: 80px;
+  height: 160px;
+  margin: 0 $marge;
+
+  &.closed {
+    opacity: .33;
+  }
+
+}
+
+.class-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: auto;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+}
+
+.class-status-text {
+  margin-top: $marge;
+  text-align: center;
+  line-height: 1;
+
+  span {
+    text-transform: capitalize;
+  }
+}
+
+/* PROGRESS */
+#bloodrage_magtheridon, #stormrage_magtheridon {
+  .progress-bar-container {
+    justify-content: flex-end;
+  }
+}
+
+.progress-body {
+  padding: $marge*2;
+  width: 100%;
+}
+
+.raid-progress {
+  margin-bottom: $marge*2;
+
+  &.lock {
+    opacity: 0.33;
+
+    .progress-bar {
+      width: 0;
+    }
+
+  }
+}
+
+.raid-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.progress-bar-container {
+  position: relative;
+  z-index: 1;
+  background-color: $grey;
+  height: 5px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progress-bar {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 47%;
+  height: 100%;
+  background-color: $blood;
+  @include trans;
+}
+
+.progress-step {
+  width: 25px;
+  height: 25px;
+  background-color: $grey;
+  border-radius: 50%;
+  border: 6px solid $dark;
+  position: relative;
+  z-index: 3;
+  @include trans;
+
+  &.pointer {
+    cursor: pointer;
+  }
+}
+
+/* BLOODRAGE */
+#bloodrage {
+
+  .roster-header, .progress-header {
+    background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
+    width: 75%;
+  }
+
+  button {
+    background-color: $blood;
+
+    &:hover {
+      background-color: lighten($blood, 5%);
+    }
+  }
+
+  .class-icon {
+    border: 5px solid $blood;
+  }
+
+  .progress-bar {
+    background-color: $blood;
+  }
+
+  .progress-step.check {
+    background-color: $blood;
+  }
+
+}
+
+/* STORMRAGE */
+#stormrage {
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .roster-header, .progress-header {
+    text-align: right;
+    background: linear-gradient(-135deg, $storm 5%, $storm 25%, $dark 55%);
+    width: 75%;
+  }
+
+  .recruitment-header {
+    width: 100%;
+  }
+
+  button {
+    background-color: $storm;
+
+    &:hover {
+      background-color: lighten($storm, 5%);
+    }
+  }
+
+  .recruitment-body {
+    justify-content: space-around;
+    flex-direction: row-reverse;
+  }
+
+  .class-icon {
+    border: 5px solid $storm;
+  }
+
+  .progress-bar {
+    background-color: $storm;
+  }
+
+  .progress-step.check {
+    background-color: $storm;
+  }
+
+}
+
+/* LOGIN FORM */
+#auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#close-auth {
+  position: fixed;
+  top: $marge*2;
+  right: $marge*2;
+  font-size: 2rem;
+  cursor: pointer;
+  fill: $grey;
+  @include trans;
+
+  &:hover {
+    fill: lighten($grey, 20%);
+  }
+}
+
+#auth-box {
+  width: 60%;
+  max-width: 800px;
+  display: flex;
+}
+
+.auth-section {
+  background-color: $dark;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-header {
+  line-height: .9;
+  border-top-left-radius: 2px ;
+  border-top-right-radius: 2px ;
+  
+  h3 {
+    padding: $marge*2;
+
+  }
+}
+
+.form-submit {
+  margin-top: auto;
+}
+
+.auth-body {
+  padding: $marge*2 $marge*2 $marge $marge*2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#inscription {
+  margin-right: $marge;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  
+  h3 {
+    border-top-left-radius: 2px;
+    background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
+  }
+
+  .form-submit {
+    background-color: $blood;
+    align-self: flex-start;
+
+    &:hover {
+      background-color: lighten($blood, 10%);
+    }
+  }
+
+}
+
+#connection {
+  margin-left: $marge;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  
+  h3 {
+    border-top-right-radius: 2px;
+    background: linear-gradient(-135deg, $storm 5%, $storm 25%, $dark 55%);
+    text-align: right;
+  }
+
+  .form-submit {
+    background-color: $storm;
+    align-self: flex-end;
+
+    &:hover {
+      background-color: lighten($storm, 10%);
+    }
+  }
+
+}
+
+/* ADMIN */
+#admin-connected {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: $marge/2 0;
+  font-size: .8rem;
+  
+  .button-link {
+    font-size: .8rem;
+    margin-left: $marge/2;
+  }
+}
+
+/* CLASS EDITOR */
+#class-editor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .box {
+    background-color: $dark;
+    border-radius: 2px;
+    position: relative;
+    margin: 0 $marge;
+  }
+
+  &.bloodrage {
+    #class-editor-header {
+      @include blood-gradient;
+    }
+
+    .class-icon {
+      border: 3px solid $blood;
+    }
+  }
+
+  &.stormrage {
+    #class-editor-header {
+      @include storm-gradient;
+    }
+
+    .class-icon {
+      border: 3px solid $storm;
+    }
+  }
+
+}
+
+#close-class-editor {
+  position: absolute;
+  top: $marge/2;
+  right: $marge/2;
+  cursor: pointer;
+}
+
+#class-editor-header {
+  padding: $marge*2;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  
+  .class-icon {
+    margin-right: $marge*2;
+  }
+  
+  h2 {
+    text-shadow: 3px 3px 6px #000;
+  }
+}
+
+#class-editor-body {
+  padding: $marge*2;
+
+  [type="number"] {
+    width: 75px;
+    margin-right: $marge;
+  }
+
+  label:first-letter {
+    text-transform: capitalize;
+  }
+
+  .faded {
+    opacity: .33;
+  }
+}
+
+/* RECRUIT MODAL */
+
+.recrut-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+
+  .box {
+    width: 75%;
+    max-width: 1060px;
+    background-color: $dark;
+  }
+}
+
+.recrut-modal-header {
+
+  position: relative;
+  padding: $marge*2;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+
+  .roster-name {
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 3rem;
+    line-height: .9;
+    text-shadow: 3px 3px 6px #000;
+  }
+
+  #close-recrut-modal {
+    position: absolute;
+    top: $marge*2;
+    right: $marge*2;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+}
+
+.recrut-modal-body {
+  padding: $marge*2;
+
+  .roster-name {
+    margin: 0 5px;
+    text-transform: capitalize;
+
+    &.bloodrage {
+      color: lighten($blood, 10%);
+    }
+
+    &.stormrage {
+      color: lighten($storm, 10%);
+    }
+  }
+
+  .content:not(.content:last-child) {
+    margin-bottom: $marge*6;
+  }
+
+  a.button {
+    display: inline-flex;
+    align-items: center;
+    svg {
+      margin-right: $marge;
+    }
+  }
+
+
+}
+
+#recrut-modal-bloodrage {
+
+  .recrut-modal-header {
+    @include blood-gradient;
+  }
+
+  a.button {
+    background-color: $blood;
+    @include trans;
+
+    &:hover {
+      background-color: lighten($blood, 10%);
+    }
+  }
+
+}
+
+#recrut-modal-stormrage {
+
+  .recrut-modal-header {
+    @include storm-gradient;
+  }
+
+  a.button {
+    background-color: $storm;
+    @include trans;
+
+    &:hover {
+      background-color: lighten($storm, 10%);
+    }
+  }
+
+}
+
+@import "responsive.scss";

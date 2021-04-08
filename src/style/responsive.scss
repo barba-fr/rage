@@ -1,0 +1,172 @@
+@media only screen and ( max-width: 1240px ) {
+    
+    body {
+        padding-left: $marge*2;
+        padding-right: $marge*2;
+        
+    }
+    
+    /* FRAMEWORK */
+    .container {
+        width: 100%;
+    }
+    
+}
+
+@media only screen and ( max-width: 990px ) {
+    
+    #stormrage, #bloodrage {
+        .roster-header, .progress-header {
+            width: 100%;
+        }
+    }
+
+    #auth-box {
+        width: 75%;
+    }
+    
+    .recrut-modal {
+        padding: $marge*2;
+        align-items: flex-start;
+        
+        .box {
+            width: 100%;
+        }
+
+    }
+    
+}
+
+@media only screen and ( max-width: 880px ) {
+    
+    #rosters {
+        flex-direction: column;
+    }
+    
+    .roster {
+        width: 100%;
+    }
+    
+    #stormrage {
+        margin-left: 0;
+
+        .roster-header, .progress-header {
+            background: linear-gradient(135deg, $storm 5%, $storm 25%, $dark 55%);
+            text-align: left;
+        }
+        
+        .recruitment-header {
+            flex-direction: row-reverse;
+        }
+    }
+    
+    .class-status {
+        margin: 0;
+        width: 20%;
+    }
+    
+}
+
+@media only screen and ( max-width: 740px ) {
+
+    header {
+        flex-direction: column;
+    }
+
+    #header-left {
+        width: 100%;
+        margin-bottom: $marge*2;
+    }
+
+    #description {
+        width: 100%;
+    }
+
+    #close-auth {
+        font-size: 1rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    #auth-box {
+        width: 100%;
+        padding-right: $marge*2;
+        padding-left: $marge*2;
+    }
+
+}
+
+@media only screen and ( max-width: 580px ) {
+
+    .class-status {
+        margin: 0 $marge*2;
+    }
+
+    .progress-step {
+        display: none;
+    }
+
+    #auth {
+        overflow: auto;
+        align-items: flex-start;
+    }
+
+    #auth-box {
+        flex-direction: column;
+        width: 80%;
+        padding: $marge*2 0;
+    }
+
+    .auth-section {
+        width: 100%;
+    }
+
+    #connection {
+        margin: $marge*2 0;
+    }
+
+}
+
+@media only screen and ( max-width: 490px ) {
+
+    #liens {
+        flex-wrap: wrap;
+
+        #slogan {
+            width: 100%;
+        }
+    
+        #discord-link {
+            margin-left: 0;
+        }
+    }
+
+
+}
+
+@media only screen and ( max-width: 400px ) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .recruitment-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #stormrage {
+
+        .recruitment-header {
+            flex-direction: column-reverse;
+        }
+
+    }
+
+    .recrut-modal-header {
+        h2 {
+            font-size: 2rem;
+        }
+    }
+
+}

@@ -1,0 +1,25 @@
+$bg : #121212;
+$blood: #7a0000;
+$storm: #1a3367;
+$dark: #161616;
+$grey : #c7c3c9;
+
+$marge: 10px;
+
+$corner: 2px;
+
+@mixin dev($color: red, $size: 1px) {
+    border : $size solid $color;
+}
+
+@mixin trans($time: .15s, $ease: ease-out) {
+    transition: all $time $ease;
+}
+
+@mixin blood-gradient($angle: 135deg) {
+    background: linear-gradient($angle, $blood 5%, $blood 25%, $dark 55%);
+}
+
+@mixin storm-gradient($angle: 135deg) {
+    background: linear-gradient($angle, $storm 5%, $storm 25%, $dark 55%);
+}

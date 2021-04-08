@@ -1,0 +1,221 @@
+.blood {
+    color: lighten($blood, 10%);
+}
+
+.storm {
+    color: lighten($storm, 10%);
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.card {
+    background-color: $dark;
+    border: 1px solid lighten($dark, 3%);
+}
+
+a.button, button {
+    display: flex;
+    color: $grey;
+    border-radius: $corner;
+    padding: $marge/2 $marge*2;
+    @include trans;
+    outline: none;
+    border: none;
+    font-family: 'Teko', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &.button-link {
+        background-color: transparent;
+        align-items: center;
+        padding: 0;
+        text-decoration: underline;
+
+        svg {
+            position: relative;
+            top: -2px;
+        }
+
+        &:hover {
+            color: lighten($grey, 10%);
+        }
+    }
+}
+
+.card {
+    margin-bottom: $marge*2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($bg, .95);
+    opacity: 0;
+    animation: overlay .15s ease-out 1 forwards;
+
+    > div {
+        transform: translateY(-25px);
+        animation: overlaycontent .15s ease-out 1 forwards;
+    }
+
+    &.closing {
+        animation: overlayisclosing .15s ease-out 1 forwards;
+
+        > div {
+            animation: boxisclosing .15s ease-out 1 forwards;
+        }
+    }
+}
+
+@keyframes overlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes overlaycontent {
+    from {
+        transform: translateY(-25px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes overlayisclosing {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes boxisclosing {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-25px);
+    }
+}
+
+/* FORMS */
+.form-group {
+
+    margin-bottom: $marge;
+
+    label {
+        display: block;
+        position: relative;
+        left: 5px;
+    }
+
+    [type="email"], [type="password"], [type="number"], [type="text"] {
+        font-family: 'Teko', sans-serif;
+        font-size: 1rem;
+        display: block;
+        width: 100%;
+        border-radius: 2px;
+        padding: $marge/2 $marge;
+        border: none;
+        @include trans;
+        background-color: $grey;
+        
+        &:focus {
+            outline: none;
+            background-color: #fff;
+        }
+    }
+
+    &.inline {
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* TOAST */
+.toast {
+    position: fixed;
+    z-index: 100;
+    bottom: $marge*2;
+    right: $marge*2;
+    background-color: $dark;
+    width: 300px;
+    border-radius: 2px;
+    font-size: .9rem;
+    transform: translateX(125%);
+    animation : toast 4s linear 1;
+    box-shadow: -3px -3px 6px #000;
+
+    &.danger {
+        border: 2px solid $blood;
+
+        .toast-header {
+            background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
+        }
+    }
+
+    
+    &.success {
+        border: 2px solid $storm;
+        
+        .toast-header {
+            background: linear-gradient(135deg, $storm 5%, $storm 25%, $dark 55%);
+        }
+    }
+}
+
+@keyframes toast {
+    0% {
+        transform: translateX(125%);
+    }
+    10% {
+        transform: translateX(0);
+    }
+    90% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(125%);
+    }
+}
+
+.toast-header {
+    padding: $marge/2 $marge;
+}
+
+.toast-body {
+    padding: $marge;
+}
