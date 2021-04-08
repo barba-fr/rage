@@ -1,2 +1,2 @@
 # rage-classic.fr
-Obtenu en remote
+Obtenu en remote avec tuto
