@@ -1,2 +1,2 @@
 # rage-classic.fr
-Code source du site
+Obtenu en remote
