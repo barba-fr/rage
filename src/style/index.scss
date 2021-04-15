@@ -206,9 +206,17 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.raid-lock-status {
+  display: flex;
+  align-items: center;
 
   svg {
+    position: relative;
+    top: -3px;
     cursor: pointer;
+    margin-right: $marge/2;
   }
 }
 

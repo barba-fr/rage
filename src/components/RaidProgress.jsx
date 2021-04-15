@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoLockClosed, IoLockOpen } from 'react-icons/io5';
+import { IoLockClosed, IoCheckbox, IoArrowForwardCircle } from 'react-icons/io5';
 import RaidStep from './RaidStep';
 import {db} from "../firebase";
 
@@ -47,7 +47,13 @@ class RaidProgress extends React.Component {
 
             if ( this.state.raidData ) {
 
-                lockIcon = this.state.raidData.lock === true ? <IoLockClosed onClick={this.toggleLock} /> : <IoLockOpen onClick={this.toggleLock} />;
+                if ( this.state.raidData.lock === true ) {
+                    lockIcon = <IoLockClosed onClick={this.toggleLock} />
+                } else if ( this.state.raidData.lock !== true && this.state.raidData.bossDown < this.props.metaData.bossTotal ) {
+                    lockIcon = <IoArrowForwardCircle onClick={this.toggleLock} />
+                } else {
+                    lockIcon = <IoCheckbox onClick={this.toggleLock} />
+                }
                 lockOpacity = this.state.raidData.lock !== false ? "lock" : null;
                 bossDown = this.state.raidData.bossDown;
 
@@ -93,7 +99,7 @@ class RaidProgress extends React.Component {
             <div className={`raid-progress ${lockOpacity}`} id={`${this.props.roster}_${this.props.raidId}`}>
 
                 <div className="raid-progress-header">
-                    <p>{ lockIcon } { raidName }</p>
+                    <p class="raid-lock-status">{ lockIcon } { raidName }</p>
                     <p>{ bossDown } / { bossTotal }</p>
                 </div>
 
