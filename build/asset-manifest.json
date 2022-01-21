@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.24658c47.chunk.css",
+    "main.js": "/static/js/main.d5dc0f46.chunk.js",
+    "main.js.map": "/static/js/main.d5dc0f46.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.22b3ac00.js",
+    "runtime-main.js.map": "/static/js/runtime-main.22b3ac00.js.map",
+    "static/js/2.1c97a750.chunk.js": "/static/js/2.1c97a750.chunk.js",
+    "static/js/2.1c97a750.chunk.js.map": "/static/js/2.1c97a750.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.24658c47.chunk.css.map": "/static/css/main.24658c47.chunk.css.map",
+    "static/js/2.1c97a750.chunk.js.LICENSE.txt": "/static/js/2.1c97a750.chunk.js.LICENSE.txt",
+    "static/media/druid.png": "/static/media/druid.863c3e2d.png",
+    "static/media/mage.png": "/static/media/mage.c2d87812.png",
+    "static/media/paladin.png": "/static/media/paladin.7cfa4a69.png",
+    "static/media/priest.png": "/static/media/priest.5200efa1.png",
+    "static/media/rage-logo.a6708ab0.png": "/static/media/rage-logo.a6708ab0.png",
+    "static/media/rogue.png": "/static/media/rogue.192743b0.png",
+    "static/media/shaman.png": "/static/media/shaman.b897e797.png",
+    "static/media/warlock.png": "/static/media/warlock.a955586a.png",
+    "static/media/warrior.png": "/static/media/warrior.50d6072e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.22b3ac00.js",
+    "static/js/2.1c97a750.chunk.js",
+    "static/css/main.24658c47.chunk.css",
+    "static/js/main.d5dc0f46.chunk.js"
+  ]
+}
