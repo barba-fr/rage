@@ -267,29 +267,6 @@ class App extends React.Component {
         />
     );
 
-    // STORMRAGE RECRUITMENT
-    const stormrageClassStatus = Object.keys(spe).map(key =>
-      <ClassStatus 
-        key={`stormrage_${key}`}
-        roster="stormrage"
-        wowClass={key}
-        admin={this.state.admin}
-        showClassEditor={this.showClassEditor}
-      />
-    );
-
-    // STORMRAGE PROGRESS
-    let stormrageProgress = Object.keys( this.state.raidList ).map(
-      key => 
-        <RaidProgress 
-          key={`stormrage_${key}`}
-          admin={this.state.admin} 
-          roster="stormrage" 
-          raidId={key}
-          metaData={this.state.raidList[key]}
-        />
-    );
-
     return (
       <div className="container" id="app">
 
