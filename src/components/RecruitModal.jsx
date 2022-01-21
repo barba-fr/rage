@@ -36,7 +36,7 @@ class RecruitModal extends React.Component {
 
                             <ul>
                                 <li>
-                                    <p> Notre roster <span className={`roster-name ${this.props.roster}`}> { this.props.roster } </span> raid principalement {this.rosterSpec.raidDays[this.props.roster]} .</p>
+                                    <p> Notre roster raid principalement {this.rosterSpec.raidDays[this.props.roster]} .</p>
 
                                 </li>
                                 <li>
