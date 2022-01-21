@@ -323,7 +323,7 @@ class App extends React.Component {
           </div>
 
           <p id="description">
-            Rage est une guilde World Of Warcraft fondée en 2009 qui a pour objectif de faire du PvE HL dans une ambiance décontractée, tout en gardant un soucis d'optimisation. Ayant clean le contenu de WoW Classic depuis le 26 janvier 2021, Rage a décidé de reconquérir l'Outreterre. Forte de son expérience passée, la guilde monte deux rosters coté horde : <span className="blood">Bloodrage</span> & <span className="storm">Stormrage</span>.
+            Rage est une guilde World Of Warcraft fondée en 2009 qui a pour objectif de faire du PvE HL dans une ambiance décontractée, tout en gardant un soucis d'optimisation. Ayant clean le contenu de WoW Classic depuis le 26 janvier 2021, Rage a décidé de reconquérir l'Outreterre.
           </p>
 
         </header>
@@ -335,16 +335,11 @@ class App extends React.Component {
             <div className="card">
 
               <div className="roster-header">
-                <p className="help">roster</p>
-                <h1>Bloodrage</h1>
+                <h2>Recrutement</h2>
+                <RecruitButton roster="bloodrage" openRecruitModal={this.openRecruitModal} />
               </div>
 
               <div className="recruitment">
-
-                <div className="recruitment-header">
-                  <h2>recrutement</h2>
-                  <RecruitButton roster="bloodrage" openRecruitModal={this.openRecruitModal} />
-                </div>
 
                 <div className="recruitment-body">
                   { bloodrageClassStatus }
@@ -358,7 +353,6 @@ class App extends React.Component {
             <div className="card">
 
               <div className="progress-header">
-                <p className="help">Bloodrage</p>
                 <h2>Progress</h2>
               </div>
 
@@ -371,44 +365,6 @@ class App extends React.Component {
 
           </section>
           {/* end Bloodrage */}
-
-          <section className="roster" id="stormrage">
-
-            <div className="card">
-
-              <div className="roster-header">
-                <p className="help">roster</p>
-                <h1>Stormrage</h1>
-              </div>
-
-              <div className="recruitment-header">
-                <RecruitButton roster="stormrage" openRecruitModal={this.openRecruitModal} />
-                <h2>recrutement</h2>
-              </div>
-
-              <div className="recruitment-body">
-                { stormrageClassStatus }
-              </div>
-
-            </div>
-            {/* end recruitment card */}
-
-            <div className="card">
-
-              <div className="progress-header">
-                <p className="help">Stormrage</p>
-                <h2>Progress</h2>
-              </div>
-
-              <div className="progress-body">
-                { stormrageProgress }
-              </div>
-
-            </div>
-            {/* end progress card */}
-
-          </section>
-          {/* end Stormrage */}
 
         </main>
 

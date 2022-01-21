@@ -1,6 +1,6 @@
 import React from 'react';
 import { IoCheckbox, IoSquare, IoClose } from 'react-icons/io5';
-import { db } from '../../firebase';
+import { auth, db } from '../../firebase';
 
 class ClassEditor extends React.Component {
 
@@ -14,11 +14,20 @@ class ClassEditor extends React.Component {
 
         this._isMounted = true;
 
-        db.collection( this.props.data.roster ).doc('recruitment').collection(this.props.data.wowClass).doc('spe').onSnapshot( doc => {
-            if ( this._isMounted ) {
-                this.setState({ recruitment: doc.data() })
+        auth.onAuthStateChanged((user) => {
+
+            if (user) {
+
+              db.collection( this.props.data.roster ).doc('recruitment').collection(this.props.data.wowClass).doc('spe').onSnapshot( doc => {
+                  if ( this._isMounted ) {
+                      this.setState({ recruitment: doc.data() })
+                  }
+              } )
+      
+            } else {
+              console.log('no user');
             }
-        } )
+          });
 
     }
 

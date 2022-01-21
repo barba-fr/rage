@@ -96,15 +96,15 @@ header {
 }
 
 .roster {
-  width: 50%;
+  flex: 1,
 }
 
-#bloodrage {
-  margin-right: $marge;
-}
-
-#stormrage {
-  margin-left: $marge;
+.roster-header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .roster-header, .progress-header {
@@ -262,7 +262,6 @@ header {
 
   .roster-header, .progress-header {
     background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
-    width: 75%;
   }
 
   button {

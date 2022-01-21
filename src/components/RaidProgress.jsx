@@ -99,7 +99,7 @@ class RaidProgress extends React.Component {
             <div className={`raid-progress ${lockOpacity}`} id={`${this.props.roster}_${this.props.raidId}`}>
 
                 <div className="raid-progress-header">
-                    <p class="raid-lock-status">{ lockIcon } { raidName }</p>
+                    <p className="raid-lock-status">{ lockIcon } { raidName }</p>
                     <p>{ bossDown } / { bossTotal }</p>
                 </div>
 
