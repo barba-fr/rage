@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoLockClosed, IoCheckbox, IoArrowForwardCircle } from 'react-icons/io5';
 import RaidStep from './RaidStep';
-import {db} from "../firebase";
+import {db} from "../../firebase";
 
 class RaidProgress extends React.Component {
 

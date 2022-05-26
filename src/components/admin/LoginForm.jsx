@@ -1,6 +1,6 @@
 import React from 'react';
-import {auth} from '../firebase'
-import {db} from '../firebase';
+import {auth} from '../../firebase'
+import {db} from '../../firebase';
 
 import { IoClose } from 'react-icons/io5'
 

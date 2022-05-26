@@ -1,7 +1,7 @@
 import React from "react";
-import {db} from "../firebase";
+import {db} from "../../firebase";
 
-import spe from '../spe';
+import spe from '../../spe';
 
 class ClassStatus extends React.Component {
 
@@ -70,7 +70,7 @@ class ClassStatus extends React.Component {
             <div className={`class-status ${ isClosed }`} onClick={this.showClassEditor}>
 
                 <div className="class-icon" style={{ cursor: cursorPointer }}>
-                    <img src={require(`../assets/class-icons/${ this.props.wowClass }.png`).default} alt={ `${ this.props.wowClass } icon` }/>
+                    <img src={require(`../../assets/class-icons/${ this.props.wowClass }.png`).default} alt={ `${ this.props.wowClass } icon` }/>
                 </div>
                 
                 <div className="class-status-text">

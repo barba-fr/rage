@@ -25,7 +25,6 @@ class RecruitModal extends React.Component {
                     
                     <div className="recrut-modal-header">
                         <IoClose id="close-recrut-modal" onClick={this.closeRecrutModal} />
-                        <p className="help roster-name">{this.props.roster}</p>
                         <h2>Postuler</h2>
                     </div>
 
