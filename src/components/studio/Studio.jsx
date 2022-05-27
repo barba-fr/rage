@@ -273,8 +273,8 @@ class Home extends React.Component {
 
         </main>
 
-        { this.state.loginForm !== false ?                                      <LoginForm hideForm={this.hideForm} confirmLogin={this.confirmLogin} refuseLogin={this.refuseLogin} isClosing={this.state.loginForm} /> : null }
-        { this.state.toast.display === true ?                                   <Toast type={this.state.toast.type} header={this.state.toast.header} message={this.state.toast.message} /> : null  }
+        { this.state.loginForm !== false ?      <LoginForm hideForm={this.hideForm} confirmLogin={this.confirmLogin} refuseLogin={this.refuseLogin} isClosing={this.state.loginForm} /> : null }
+        { this.state.toast.display === true ?   <Toast type={this.state.toast.type} header={this.state.toast.header} message={this.state.toast.message} /> : null  }
         
       </div>
     );

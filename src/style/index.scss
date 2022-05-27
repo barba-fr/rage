@@ -23,6 +23,10 @@ header {
   align-items: flex-start;
   padding: $marge*2;
   border-radius: 2px;
+
+  &.card {
+    margin-bottom: $marge;
+  }
 }
 
 #header-left {
@@ -74,8 +78,8 @@ header {
 
 
 #logs-logo {
-  width: 30px;
-  margin-right: $marge/2;
+  width: 25px;
+  margin-right: $marge/3;
 }
 
 #logo-horde {
@@ -87,6 +91,55 @@ header {
   flex: 1;
   position: relative;
   top: -7px;
+}
+
+/* MENUS */
+#menus {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 $marge*2;
+  margin-bottom: $marge*2;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: $grey;
+
+    &:hover {
+      color: lighten($blood, 10%);
+    }
+
+    svg {
+      position: relative;
+      top: -2px;
+      margin-right: $marge/2;
+    }
+  }
+
+  a.active {
+    color: lighten($blood, 10%);
+  }
+
+}
+
+nav {
+  
+  ul {
+    display: flex;
+  }
+
+  li {
+    margin-right: $marge*3;
+  }
+
+}
+
+#external-links {
+  display: flex;
+
+  a {
+    margin-left: $marge*3;
+  }
 }
 
 /* ROSTERS */

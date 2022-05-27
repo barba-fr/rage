@@ -1,10 +1,6 @@
 import React from "react";
 
-import logo from "../../assets/rage-logo.png";
-import hordeLogo from "../../assets/horde-logo.png";
-import {IoLogoDiscord} from "react-icons/io5";
-import logsLogo from "../../assets/warcraft-logs-logo.png"
-
+import Header from '../header/Header'
 import ClassStatus from './ClassStatus';
 import RaidProgress from "./RaidProgress";
 import LoginForm from "../admin/LoginForm";
@@ -272,38 +268,7 @@ class Home extends React.Component {
 
         { this.state.admin === true ? <AdminConnected logout={this.logout}/> : null }
         
-        <header className="card">
-
-          <div id="header-left">
-
-            <img src={logo} alt="Logo de le guilde Rage" id="logo-rage" onClick={this.showForm}/>
-
-            <div id="liens">
-
-              <p id="slogan">
-                <img src={hordeLogo} alt="Pour la Horde !" id="logo-horde" />
-                <span>
-                  Guilde WoW Classic
-                </span>
-              </p>
-
-              <a href="https://discord.gg/trmyXbv" target="_blank" rel="noopener noreferrer" title="Rejoindre le discord Rage" id="discord-link">
-                <IoLogoDiscord /> Discord
-              </a>
-
-              <a href="https://classic.warcraftlogs.com/guild/id/479017" target="_blank" rel="noopener noreferrer" title="Logs de la guilde" id="log-link">
-                <img src={logsLogo} alt="" id="logs-logo" /> Logs
-              </a>
-
-            </div>
-
-          </div>
-
-          <p id="description">
-            Rage est une guilde World Of Warcraft fondée en 2009 qui a pour objectif de faire du PvE HL dans une ambiance décontractée, tout en gardant un soucis d'optimisation. Ayant clean le contenu de WoW Classic depuis le 26 janvier 2021, Rage a décidé de reconquérir l'Outreterre.
-          </p>
-
-        </header>
+       <Header showForm={this.showForm} />
 
         <main id="rosters">
 
