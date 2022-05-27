@@ -311,32 +311,28 @@ nav {
 }
 
 /* BLOODRAGE */
-#bloodrage {
+.roster-header, .progress-header {
+  background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
+}
 
-  .roster-header, .progress-header {
-    background: linear-gradient(135deg, $blood 5%, $blood 25%, $dark 55%);
+button {
+  background-color: $blood;
+
+  &:hover {
+    background-color: lighten($blood, 5%);
   }
+}
 
-  button {
-    background-color: $blood;
+.class-icon {
+  border: 5px solid $blood;
+}
 
-    &:hover {
-      background-color: lighten($blood, 5%);
-    }
-  }
+.progress-bar {
+  background-color: $blood;
+}
 
-  .class-icon {
-    border: 5px solid $blood;
-  }
-
-  .progress-bar {
-    background-color: $blood;
-  }
-
-  .progress-step.check {
-    background-color: $blood;
-  }
-
+.progress-step.check {
+  background-color: $blood;
 }
 
 /* STORMRAGE */
@@ -383,6 +379,39 @@ nav {
     background-color: $storm;
   }
 
+}
+
+/* BLOG */
+#blog {
+  .roster-header {
+    margin-bottom: $marge*2;
+  }
+}
+
+.video-post {
+  margin-bottom: $marge*2;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+} 
+
+.post-content {
+  padding: $marge*2;
+}
+
+.post-thumbnail {
+  background-color: $bg;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    font-size: 3rem;
+  }
 }
 
 /* LOGIN FORM */

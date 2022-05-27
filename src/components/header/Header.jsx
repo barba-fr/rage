@@ -50,7 +50,7 @@ function Header(props) {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="studio">
+                            <NavLink to="/studio">
                                 <IoFilmOutline /> Studio
                             </NavLink>
                         </li>
