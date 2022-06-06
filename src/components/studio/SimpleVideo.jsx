@@ -5,9 +5,12 @@ function SimpleVideo(props) {
 
     let media = useRef()
     
+    
     const [isPlaying, setIsPlaying] = useState(false)
 
     useEffect( () => {
+
+        media.current.volume = .5
 
         isPlaying === true ? media.current.play() : media.current.pause()
 
