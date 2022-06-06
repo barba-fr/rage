@@ -11,7 +11,7 @@ function SimpleVideo(props) {
 
         isPlaying === true ? media.current.play() : media.current.pause()
 
-    } )
+    }, [isPlaying] )
     
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying)
