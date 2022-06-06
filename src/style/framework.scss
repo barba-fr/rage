@@ -46,7 +46,9 @@ nav {
 
 .card {
     background-color: $dark;
+    border-radius: $corner;
     border: 1px solid lighten($dark, 3%);
+    margin-bottom: $marge*2;
 }
 
 a.button, button {
@@ -76,10 +78,18 @@ a.button, button {
             color: lighten($grey, 10%);
         }
     }
-}
 
-.card {
-    margin-bottom: $marge*2;
+    &.invert {
+        background-color: $grey;
+        color: $blood;
+        opacity: .8;
+
+        &:hover {
+            background-color: $grey;
+            color: $blood;
+            opacity: 1;
+        }
+    }
 }
 
 .overlay {
@@ -143,6 +153,12 @@ a.button, button {
     }
 }
 
+.box-content {
+
+    padding: $marge*2;
+
+}
+
 /* FORMS */
 .form-group {
 
@@ -175,6 +191,16 @@ a.button, button {
         display: flex;
         align-items: center;
     }
+
+    &.button-group {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            margin-left: $marge*2;
+        }
+    }
+
 }
 
 /* TOAST */
@@ -230,4 +256,20 @@ a.button, button {
 
 .toast-body {
     padding: $marge;
+}
+
+/* ADMIN */
+.admin-controls {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+        cursor: pointer;
+        @include trans;
+
+        &:hover {
+            color: lighten($blood, 5%);
+        }
+    }
 }

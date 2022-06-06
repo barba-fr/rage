@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from './home/Home'
 import Studio from './studio/Studio'
+import Post from './studio/Post'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="studio" element={<Studio />} />
+        <Route exact path="studio/video/:id" element={<Post />} />
       </Routes>
     </div>
   );

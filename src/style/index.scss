@@ -231,7 +231,7 @@ nav {
 }
 
 /* PROGRESS */
-#bloodrage_magtheridon, #stormrage_magtheridon {
+#bloodrage_magtheridon {
   .progress-bar-container {
     justify-content: flex-end;
   }
@@ -336,60 +336,67 @@ button {
 }
 
 /* STORMRAGE */
-#stormrage {
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  .roster-header, .progress-header {
-    text-align: right;
-    background: linear-gradient(-135deg, $storm 5%, $storm 25%, $dark 55%);
-    width: 75%;
-  }
-
-  .recruitment-header {
-    width: 100%;
-  }
-
-  button {
-    background-color: $storm;
-
-    &:hover {
-      background-color: lighten($storm, 5%);
-    }
-  }
-
-  .recruitment-body {
-    justify-content: space-around;
-    flex-direction: row-reverse;
-  }
-
-  .class-icon {
-    border: 5px solid $storm;
-  }
-
-  .progress-bar {
-    background-color: $storm;
-  }
-
-  .progress-step.check {
-    background-color: $storm;
-  }
-
-}
-
-/* BLOG */
+/* STUDIO */
 #blog {
   .roster-header {
     margin-bottom: $marge*2;
   }
 }
 
-.video-post {
-  margin-bottom: $marge*2;
+.studio-post {
+  padding: $marge*2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-post-header {
+  h2 {
+    margin-bottom: -$marge;
+  }
+}
+
+.studio-post-action {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+
+  a {
+    @include trans;
+    color: $grey;
+
+    &:hover {
+      color: lighten($blood, 5%);
+    }
+  }
+}
+
+#add-video-modal {
+
+  display: flex;
+  padding-top: $marge*10;
+  justify-content: center;
+  align-items: flex-start;
+
+  .roster-header {
+    border-top-left-radius: $corner;
+    border-top-right-radius: $corner;
+  }
+
+  .form-group {
+    margin-bottom: $marge*2;
+  }
+
+}
+
+.post {
+  width: 100%;
+
+  .post-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .post-header {
@@ -402,16 +409,43 @@ button {
   padding: $marge*2;
 }
 
-.post-thumbnail {
-  background-color: $bg;
-  height: 600px;
+.ratio {
+  position: relative;
+  border-radius: $corner;
+  overflow: hidden;
+}
+
+.ratio:before {
+  content: '';
+  display: block;
+  padding-bottom: 56.25%;
+}
+
+.ratio > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ratio video {
+  z-index: 1;
+}
+
+.ratio .video-overlay {
+  z-index: 10;
+  background-color: rgba( $dark, .5 );
   display: flex;
   justify-content: center;
   align-items: center;
 
   svg {
-    font-size: 3rem;
+    font-size: 5rem;
   }
+
 }
 
 /* LOGIN FORM */
@@ -552,16 +586,6 @@ button {
     }
   }
 
-  &.stormrage {
-    #class-editor-header {
-      @include storm-gradient;
-    }
-
-    .class-icon {
-      border: 3px solid $storm;
-    }
-  }
-
 }
 
 #close-class-editor {
@@ -657,9 +681,6 @@ button {
       color: lighten($blood, 10%);
     }
 
-    &.stormrage {
-      color: lighten($storm, 10%);
-    }
   }
 
   .content:not(.content:last-child) {
@@ -689,23 +710,6 @@ button {
 
     &:hover {
       background-color: lighten($blood, 10%);
-    }
-  }
-
-}
-
-#recrut-modal-stormrage {
-
-  .recrut-modal-header {
-    @include storm-gradient;
-  }
-
-  a.button {
-    background-color: $storm;
-    @include trans;
-
-    &:hover {
-      background-color: lighten($storm, 10%);
     }
   }
 
