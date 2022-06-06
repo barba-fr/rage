@@ -32,7 +32,6 @@ function Post(props) {
             setAdmin(true)
         }
         
-        console.log(id);
         db.collection('studio').where('timestamp', '==', Number(id)).get()
             .then( docs => {
                 docs.forEach( doc => {

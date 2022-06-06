@@ -1,25 +1,25 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { IoPlaySharp } from 'react-icons/io5'
 
 function SimpleVideo(props) {
 
     let media = useRef()
-
+    
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const play = () => {
-        setIsPlaying(true)
-        media.current.play()
-    }
+    useEffect( () => {
 
-    const pause = () => {
-        setIsPlaying(false)
-        media.current.pause()
+        isPlaying === true ? media.current.play() : media.current.pause()
+
+    } )
+    
+    const togglePlayPause = () => {
+        setIsPlaying(!isPlaying)
     }
 
     const Overlay = () => {
         return(
-            <div className="video-overlay" onClick={play}>
+            <div className="video-overlay" onClick={togglePlayPause}>
                 <IoPlaySharp />
             </div>
         )
@@ -30,7 +30,7 @@ function SimpleVideo(props) {
 
             { isPlaying === false ? <Overlay /> : null }
 
-            <video ref={media} onClick={pause} controls>
+            <video ref={media} onClick={togglePlayPause} controls>
                 <source src={props.source[0]} type="video/mp4" />
                 <source src={props.source[0]} type="video/ogg" />
                 Your browser does not support the video tag.
