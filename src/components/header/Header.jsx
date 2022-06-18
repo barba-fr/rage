@@ -1,46 +1,46 @@
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5/"
-import { IoFilmOutline, IoLogoDiscord } from "react-icons/io5/"
+import { IoFilmOutline, IoLogoDiscord, IoMenuSharp } from "react-icons/io5/"
 
 import logo from "../../assets/rage-logo.png";
-import hordeLogo from "../../assets/horde-logo.png";
+// import hordeLogo from "../../assets/horde-logo.png";
 import logsLogo from "../../assets/warcraft-logs-logo.png"
+import { useState } from "react";
 
 function Header(props) {
+
+    const [menu, setMenu] = useState('closed')
 
     const showForm = () => {
         props.showForm()
     }
 
+    const toggleMenu = () => {
+        if ( menu === 'closed' ) {
+            setMenu('open')
+        } else {
+            setMenu('closed')
+        }
+    }
+
     return (
-        <div id="header-container">
 
-            <header className="card">
+        <header>
 
-                <div id="header-left">
-
-                    <img src={logo} alt="Logo de le guilde Rage" id="logo-rage" onClick={showForm} />
-
-                    <div id="liens">
-
-                        <p id="slogan">
-                            <img src={hordeLogo} alt="Pour la Horde !" id="logo-horde" />
-                            <span>
-                                Guilde WoW Classic
-                            </span>
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <p id="description">
-                    Rage est une guilde World Of Warcraft fondée en 2009 qui a pour objectif de faire du PvE HL dans une ambiance décontractée, tout en gardant un soucis d'optimisation.
+            <div id="logo">
+                <img src={logo} alt="Logo de le guilde Rage" id="logo-rage" onClick={showForm} />
+                <p id="slogan">
+                    {/* <img src={hordeLogo} alt="Pour la Horde !" id="logo-horde" /> */}
+                    Guilde WoW Classic - Auberdine - Horde
                 </p>
+            </div>
 
-            </header>
 
-            <div id="menus">
+            <div className={menu} id="responsive-menus">
+                
+                <div id="burger-icon" onClick={toggleMenu}>
+                    <IoMenuSharp />
+                </div>
 
                 <nav>
                     <ul>
@@ -68,8 +68,8 @@ function Header(props) {
                 </div>
 
             </div>
-
-        </div>
+      
+        </header>
     );
 }
 

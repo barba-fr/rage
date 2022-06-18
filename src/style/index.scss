@@ -19,19 +19,15 @@ body {
 
 /* HEADER */
 header {
+  padding-left: $marge*2;
   display: flex;
-  align-items: flex-start;
-  padding: $marge*2;
-  border-radius: 2px;
-
-  &.card {
-    margin-bottom: $marge;
-  }
+  align-items: flex-end;
+  margin-bottom: $marge*2;
 }
 
-#header-left {
-  width: 40%;
-  margin-right: $marge*4;
+#logo {
+  max-width: 265px;
+
 }
 
 #logo-rage {
@@ -41,45 +37,9 @@ header {
   cursor: pointer;
 }
 
-#liens {
+#slogan {
   display: flex;
-  margin-top: $marge/2;
-
-  a, #slogan {
-    display: flex;
-    align-items: center;
-    margin-right: $marge*2;
-    color: $grey;
-    font-size: 1.3rem;
-
-    &:hover {
-      color: $grey;
-    }
-
-    svg {
-      fill: $grey;
-      font-size: 1.3rem;
-      margin-right: $marge/2;
-    }
-  }
-  
-  #slogan {
-    white-space: nowrap;
-  }
-
-  #discord-link {
-    margin-left: auto;
-  }
-
-  #log-link {
-    margin-right: 0;
-  }
-}
-
-
-#logs-logo {
-  width: 25px;
-  margin-right: $marge/3;
+  justify-content: space-between;
 }
 
 #logo-horde {
@@ -87,18 +47,20 @@ header {
   margin-right: $marge/2;
 }
 
-#description {
-  flex: 1;
-  position: relative;
-  top: -7px;
+#logs-logo {
+  width: 25px;
+  margin-right: $marge/3;
 }
 
 /* MENUS */
-#menus {
+
+#responsive-menus {
   display: flex;
   justify-content: space-between;
-  padding: 0 $marge*2;
-  margin-bottom: $marge*2;
+  flex: 1;
+  
+  margin-left: $marge*5;
+  padding-right: $marge*2;
 
   a {
     display: flex;
@@ -120,6 +82,11 @@ header {
     color: lighten($blood, 10%);
   }
 
+}
+
+#burger-icon {
+  font-size: 1.5rem;
+  display: none;
 }
 
 nav {
@@ -361,10 +328,13 @@ button {
   display: flex;
   align-items: center;
   font-size: 2rem;
+  margin-left: $marge*5;
 
   a {
     @include trans;
     color: $grey;
+    display: flex;
+    align-items: center;
 
     &:hover {
       color: lighten($blood, 5%);
