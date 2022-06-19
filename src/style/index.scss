@@ -58,7 +58,6 @@ header {
   display: flex;
   justify-content: space-between;
   flex: 1;
-  
   margin-left: $marge*5;
   padding-right: $marge*2;
 
@@ -107,6 +106,10 @@ nav {
   a {
     margin-left: $marge*3;
   }
+}
+
+#menus-overlay {
+  display: none;
 }
 
 /* ROSTERS */

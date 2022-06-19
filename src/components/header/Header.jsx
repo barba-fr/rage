@@ -17,9 +17,19 @@ function Header(props) {
 
     const toggleMenu = () => {
         if ( menu === 'closed' ) {
-            setMenu('open')
-        } else {
-            setMenu('closed')
+
+            setMenu('opening')
+            setTimeout( () => {
+                setMenu('open')
+            }, 15 )
+
+        } else if ( menu === 'open' ) {
+
+            setMenu('closing')
+            setTimeout( () => {
+                setMenu('closed')
+            }, 150 )
+
         }
     }
 
@@ -45,12 +55,12 @@ function Header(props) {
                 <nav>
                     <ul>
                         <li>
-                            <NavLink to="/">
+                            <NavLink to="/" onClick={toggleMenu}>
                                 <IoHome /> Home
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/studio">
+                            <NavLink to="/studio" onClick={toggleMenu}>
                                 <IoFilmOutline /> Studio
                             </NavLink>
                         </li>
@@ -67,7 +77,10 @@ function Header(props) {
                     </a>
                 </div>
 
+
             </div>
+            
+            <div className={menu} id="menus-overlay"></div>
       
         </header>
     );
