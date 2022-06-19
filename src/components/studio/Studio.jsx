@@ -3,8 +3,6 @@ import { IoAddCircleSharp } from 'react-icons/io5';
 
 import {db} from "../../firebase";
 
-import LoginForm from "../admin/LoginForm";
-import Toast from '../admin/Toast';
 import AddVideoModal from "../admin/AddVideoModal";
 
 import StudioPost from "./StudioPost";
@@ -87,7 +85,7 @@ class Studio extends React.Component {
 
 					<div className="roster-header admin">
 						<h1>Studio</h1>
-						{ this.state.admin === true && this.AdminControl() }
+						{ this.props.admin === true && this.AdminControl() }
 					</div>
 
 					{ posts }
