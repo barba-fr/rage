@@ -126,8 +126,8 @@ function App() {
 
 				<Routes>
 					<Route exact path="/" element={<Home admin={admin} />} />
-					<Route exact path="studio" element={<Studio />} />
-					<Route exact path="studio/video/:id" element={<Post />} />
+					<Route exact path="studio" element={<Studio admin={admin} />} />
+					<Route exact path="studio/video/:id" element={<Post admin={admin} />} />
 				</Routes>
 
 				{loginForm !== false && <LoginForm hideForm={hideForm} confirmLogin={confirmLogin} refuseLogin={refuseLogin} isClosing={loginForm} /> }
