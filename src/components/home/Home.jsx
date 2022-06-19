@@ -1,11 +1,7 @@
 import React from "react";
 
-import Header from '../header/Header'
 import ClassStatus from './ClassStatus';
 import RaidProgress from "./RaidProgress";
-import LoginForm from "../admin/LoginForm";
-import AdminConnected from "../admin/AdminConnected";
-import Toast from '../admin/Toast';
 import ClassEditor from "../admin/ClassEditor";
 
 import spe from '../../spe';
@@ -15,21 +11,11 @@ import RecruitModal from "./RecruitModal";
 class Home extends React.Component {
 
 	state = {
-		admin: false,
-
-		loginForm: false,
 
 		classEditor: {
 			open: false,
 			roster: "bloodrage",
 			wowClass: "shaman",
-		},
-
-		toast: {
-			display: false,
-			type: "",
-			header: "",
-			message: "",
 		},
 
 		raidList: {
@@ -75,10 +61,6 @@ class Home extends React.Component {
 			recruitment: {},
 		},
 
-		stormrage: {
-			recruitment: {},
-		},
-
 		recruitModal: {
 			open: false,
 			roster: ""
@@ -86,103 +68,11 @@ class Home extends React.Component {
 
 	}
 
-	componentDidMount() {
-
-		const admin = localStorage.getItem('user')
-		if (admin) {
-			this.setState({ admin: true })
-		}
-
-	}
-
-	showForm = () => {
-		if (this.state.admin === false) {
-			this.setState({ loginForm: true });
-		}
-	}
-
-	hideForm = () => {
-		this.setState({ loginForm: "closing" }, () => {
-			setTimeout(() => {
-				this.setState({ loginForm: false })
-			}, 150);
-		});
-	}
-
-	confirmLogin = user => {
-		localStorage.setItem('user', user);
-		this.hideForm();
-		this.setState({ admin: true })
-		this.sendToast('success', 'Connexion réussie', 'Vous pouvez modifier le site.')
-	}
-
-	refuseLogin = errorCode => {
-
-		const errorType = "danger";
-		let header = "Erreur", message = "Une Erreur s'est produite.";
-
-		switch (errorCode) {
-			case "auth/email-already-in-use":
-				message = "Cette adresse e-mail est déjà utilisée.";
-				break;
-
-			case "auth/pseudo-not-allowed":
-				header = "Compte refusé";
-				message = "Vous n'êtes pas éligible à l'administration du site";
-				break;
-
-			case "auth/weak-password":
-				header = "Mot de passe faible";
-				message = "Le mot de passe doit contenit au moins 6 caractères";
-				break;
-
-			case "auth/wrong-password":
-				message = "Mot de passe incorrect";
-				break;
-
-			case "auth/user-not-found":
-				message = "Utilisateur introuvable";
-				break;
-
-			default:
-				break;
-		}
-
-		this.sendToast(errorType, header, message);
-
-	}
-
-	logout = () => {
-		localStorage.removeItem('user');
-		this.setState({ admin: false })
-		this.sendToast('success', 'Déconnecté(e)', 'Vous ne pouvez plus faire de modification.')
-	}
-
-	sendToast = (type, header, message) => {
-		const toast = {
-			display: true,
-			type: type,
-			header: header,
-			message: message
-		}
-
-		const clearToast = {
-			display: false,
-			type: "",
-			header: "",
-			message: ""
-		}
-
-		this.setState({ toast }, () => {
-			setTimeout(() => {
-				this.setState({ toast: clearToast })
-			}, 4000);
-		})
-	}
-
 	showClassEditor = (roster, wowClass) => {
 
-		if (this.state.admin === true) {
+		console.log(roster, wowClass);
+
+		if (this.props.admin === true) {
 			const classEditor = {
 				open: true,
 				roster: roster,
@@ -246,7 +136,7 @@ class Home extends React.Component {
 				key={`bloodrage_${key}`}
 				roster="bloodrage"
 				wowClass={key}
-				admin={this.state.admin}
+				admin={this.props.admin}
 				showClassEditor={this.showClassEditor}
 			/>
 		);
@@ -256,7 +146,7 @@ class Home extends React.Component {
 			key =>
 				<RaidProgress
 					key={`bloodrage_${key}`}
-					admin={this.state.admin}
+					admin={this.props.admin}
 					roster="bloodrage"
 					raidId={key}
 					metaData={this.state.raidList[key]}
@@ -264,58 +154,50 @@ class Home extends React.Component {
 		);
 
 		return (
-			<div className="container" id="app">
+	
+			<main id="rosters">
 
-				{this.state.admin === true ? <AdminConnected logout={this.logout} /> : null}
+				<section className="roster" id="bloodrage">
 
-				<Header showForm={this.showForm} />
+					<div className="card">
 
-				<main id="rosters">
+						<div className="roster-header">
+							<h2>Recrutement</h2>
+							<RecruitButton roster="bloodrage" openRecruitModal={this.openRecruitModal} />
+						</div>
 
-					<section className="roster" id="bloodrage">
+						<div className="recruitment">
 
-						<div className="card">
-
-							<div className="roster-header">
-								<h2>Recrutement</h2>
-								<RecruitButton roster="bloodrage" openRecruitModal={this.openRecruitModal} />
-							</div>
-
-							<div className="recruitment">
-
-								<div className="recruitment-body">
-									{bloodrageClassStatus}
-								</div>
-
+							<div className="recruitment-body">
+								{bloodrageClassStatus}
 							</div>
 
 						</div>
-						{/* end recruitment card */}
 
-						<div className="card">
+					</div>
+					{/* end recruitment card */}
 
-							<div className="progress-header">
-								<h2>Progress</h2>
-							</div>
+					<div className="card">
 
-							<div className="progress-body">
-								{bloodrageProgress}
-							</div>
-
+						<div className="progress-header">
+							<h2>Progress</h2>
 						</div>
-						{/* end progress card */}
 
-					</section>
-					{/* end Bloodrage */}
+						<div className="progress-body">
+							{bloodrageProgress}
+						</div>
 
-				</main>
+					</div>
+					{/* end progress card */}
 
-				{this.state.loginForm !== false ? <LoginForm hideForm={this.hideForm} confirmLogin={this.confirmLogin} refuseLogin={this.refuseLogin} isClosing={this.state.loginForm} /> : null}
-				{this.state.toast.display === true ? <Toast type={this.state.toast.type} header={this.state.toast.header} message={this.state.toast.message} /> : null}
-				{this.state.admin === true && this.state.classEditor.open !== false ? <ClassEditor data={this.state.classEditor} closeClassEditor={this.closeClassEditor} isClosing={this.state.classEditor.open} /> : null}
+				</section>
+				{/* end Bloodrage */}
+
+				{this.props.admin === true && this.state.classEditor.open !== false ? <ClassEditor data={this.state.classEditor} closeClassEditor={this.closeClassEditor} isClosing={this.state.classEditor.open} /> : null}
 				{this.state.recruitModal.open !== false ? <RecruitModal roster={this.state.recruitModal.roster} closeRecrutModal={this.closeRecrutModal} isClosing={this.state.recruitModal.open} /> : null}
+			
+			</main>
 
-			</div>
 		);
 	}
 

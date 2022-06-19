@@ -206,7 +206,7 @@ a.button, button {
 /* TOAST */
 .toast {
     position: fixed;
-    z-index: 100;
+    z-index: 1000;
     bottom: $marge*2;
     right: $marge*2;
     background-color: $dark;
