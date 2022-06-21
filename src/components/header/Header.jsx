@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { IoHome } from "react-icons/io5/"
-import { IoFilmOutline, IoLogoDiscord, IoMenuSharp } from "react-icons/io5/"
+import { IoFilmOutline, IoLogoDiscord, IoMenuSharp, IoPeopleSharp } from "react-icons/io5/"
 
 import logo from "../../assets/rage-logo.png";
 // import hordeLogo from "../../assets/horde-logo.png";
@@ -59,6 +59,11 @@ function Header(props) {
                                 <IoHome /> Home
                             </NavLink>
                         </li>
+                        {/* <li>
+                            <NavLink to="/roster" onClick={toggleMenu}>
+                                <IoPeopleSharp /> Roster
+                            </NavLink>
+                        </li> */}
                         <li>
                             <NavLink to="/studio" onClick={toggleMenu}>
                                 <IoFilmOutline /> Studio

@@ -688,4 +688,43 @@ button {
 
 }
 
+/* ROSTER */
+#roster-content {
+  padding: $marge*2;
+}
+
+.players-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.player-card {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  padding: $marge*2;
+  margin: 0 $marge*2 $marge*2 0;
+
+  .class-icon {
+    margin: 0 $marge*2 0 0;
+    display: flex;
+    align-items: center
+  }
+
+}
+
+.card-player-body {
+  line-height: .85;  
+}
+
+.player-name {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.player-spe {
+  opacity: .75;
+}
+
 @import "responsive.scss";
