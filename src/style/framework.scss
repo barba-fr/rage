@@ -13,6 +13,11 @@
 
 a {
     text-decoration: none;
+    color: $grey;
+
+    &:hover {
+        color: $blood;
+    }
 }
 
 h1 {
@@ -170,7 +175,7 @@ a.button, button {
         left: 5px;
     }
 
-    [type="email"], [type="password"], [type="number"], [type="text"] {
+    [type="email"], [type="password"], [type="number"], [type="text"], select {
         font-family: 'Teko', sans-serif;
         font-size: 1rem;
         display: block;

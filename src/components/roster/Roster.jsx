@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IoAddCircleSharp } from 'react-icons/io5'
 
 import PlayerCard from './PlayerCard';
@@ -29,14 +30,12 @@ function Roster(props) {
         return cardList
     }
 
-    const adminAddPlayer = () => {
-        console.log('add player');
-    }
-
     const AdminControl = (props) => {
 		return(
-			<div className="admin-controls">
-				<IoAddCircleSharp onClick={adminAddPlayer} />
+			<div className="admin-controls"> 
+                <Link to={`add/${ props.role }`}>
+                    <IoAddCircleSharp />
+                </Link>
 			</div>
 		)
 	} 
@@ -46,7 +45,6 @@ function Roster(props) {
 
             <div className="roster-header admin">
                 <h1>Roster</h1>
-                { props.admin === true && AdminControl() }
             </div>
 
             <div id="roster-content">
@@ -54,21 +52,25 @@ function Roster(props) {
                 <h2>Tanks</h2>
                 <div className="players-list">
                     { cards( 'tank' ) }
+                    { props.admin === true && <AdminControl role="tank" /> }
                 </div>
 
                 <h2>Healers</h2>
                 <div className="players-list">
                     { cards( 'heal' ) }
+                    { props.admin === true && <AdminControl role="heal" /> }
                 </div>
 
                 <h2>Cacs</h2>
                 <div className="players-list">
                     { cards( 'cac' ) }
+                    { props.admin === true && <AdminControl role="cac" /> }
                 </div>
 
                 <h2>Ranges</h2>
                 <div className="players-list">
                     { cards( 'range' ) }
+                    { props.admin === true && <AdminControl role="range" /> }
                 </div>
 
             </div>

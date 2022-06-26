@@ -3,7 +3,6 @@ import { IoHome } from "react-icons/io5/"
 import { IoFilmOutline, IoLogoDiscord, IoMenuSharp, IoPeopleSharp } from "react-icons/io5/"
 
 import logo from "../../assets/rage-logo.png";
-// import hordeLogo from "../../assets/horde-logo.png";
 import logsLogo from "../../assets/warcraft-logs-logo.png"
 import { useState } from "react";
 
@@ -40,7 +39,6 @@ function Header(props) {
             <div id="logo">
                 <img src={logo} alt="Logo de le guilde Rage" id="logo-rage" onClick={showForm} />
                 <p id="slogan">
-                    {/* <img src={hordeLogo} alt="Pour la Horde !" id="logo-horde" /> */}
                     Guilde WoW Classic - Auberdine - Horde
                 </p>
             </div>

@@ -10,6 +10,7 @@ import Home from './home/Home'
 import Studio from './studio/Studio'
 import Post from './studio/Post'
 import Roster from "./roster/Roster";
+import RosterAdd from './admin/RosterAdd';
 
 function App() {
 
@@ -130,6 +131,7 @@ function App() {
 					<Route exact path="studio" element={<Studio admin={admin} />} />
 					<Route exact path="studio/video/:id" element={<Post admin={admin} />} />
 					<Route exact path="roster" element={<Roster admin={admin} />} />
+					<Route exact path="roster/add/:role" element={<RosterAdd admin={admin} sendToast={sendToast} />} />
 				</Routes>
 
 				{loginForm !== false && <LoginForm hideForm={hideForm} confirmLogin={confirmLogin} refuseLogin={refuseLogin} isClosing={loginForm} /> }

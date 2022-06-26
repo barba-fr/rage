@@ -700,6 +700,22 @@ button {
   .player-card-wrapper:nth-child(3n) {
     padding-right: 0;
   }
+
+  .admin-controls {
+    @include dev;
+    margin-bottom: $marge*2;
+    display: flex;
+    align-items: center;
+    background-color: $dark;
+    border-radius: $corner;
+    border: 1px solid lighten($dark, 3%);
+    padding: 0 $marge*2;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 .player-card-wrapper {
@@ -734,6 +750,7 @@ button {
 
 .player-spe {
   opacity: .75;
+  text-transform: capitalize;
 }
 
 @import "responsive.scss";
