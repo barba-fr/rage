@@ -7,39 +7,27 @@ import { db } from '../../firebase'
 
 function Roster(props) {
 
-    const [tank, setRosterTank] = useState([])
-    const [heal, setRosterHeal] = useState([])
-    const [cac, setRosterCac] = useState([])
-    const [range, setRosterRange] = useState([])
+    const [roster, setRoster] = useState([])
 
     useEffect( function() {
 
-        let tankData = []
-        let healData = []
-        let cacData = []
-        let rangeData = []
+        let rosterData = []
 
         db.collection('roster').onSnapshot( snap => {
-            let docs = snap.docs
-            docs.forEach( doc => {
-                if ( doc.data().role === 'tank' ) {
-                    tankData.push( doc.data() )
-                } else if ( doc.data().role === 'heal' ) {
-                    healData.push( doc.data() )
-                } else if ( doc.data().role === 'cac' ) {
-                    cacData.push( doc.data() )
-                } else if ( doc.data().role === 'range' ) {
-                    rangeData.push( doc.data() )
-                }
+            snap.docs.forEach( doc => {
+                rosterData.push( doc.data() )
             } )
+            setRoster( rosterData );
         } )
 
-        setRosterTank( tankData )
-        setRosterHeal( healData )
-        setRosterCac( cacData )
-        setRosterRange( rangeData )
-
     }, [] )
+
+    const cards = role => {
+        const rosterState = [...roster]
+        let roleState = rosterState.filter( i => i.role === role )
+        const cardList = Object.keys( roleState ).map( key => <PlayerCard key={key} data={roleState[key]} /> )
+        return cardList
+    }
 
     const adminAddPlayer = () => {
         console.log('add player');
@@ -53,12 +41,6 @@ function Roster(props) {
 		)
 	} 
 
-    const tankList = () => {
-
-       console.log([...tank]);
-
-    }
-
     return (
         <main id="roster">
 
@@ -71,17 +53,23 @@ function Roster(props) {
 
                 <h2>Tanks</h2>
                 <div className="players-list">
-                    { tank && tankList() }
+                    { cards( 'tank' ) }
                 </div>
 
                 <h2>Healers</h2>
-                <div className="players-list"></div>
+                <div className="players-list">
+                    { cards( 'heal' ) }
+                </div>
 
                 <h2>Cacs</h2>
-                <div className="players-list"></div>
+                <div className="players-list">
+                    { cards( 'cac' ) }
+                </div>
 
                 <h2>Ranges</h2>
-                <div className="players-list"></div>
+                <div className="players-list">
+                    { cards( 'range' ) }
+                </div>
 
             </div>
 

@@ -71,8 +71,6 @@ class Studio extends React.Component {
 		posts.sort( function(a, b) {
 			return b.timestamp - a.timestamp
 		}  )
-		console.log(posts);
-		console.log(Object.keys( posts ).map( key => <StudioPost key={key} data={ posts[key] } /> ));
 		posts = Object.keys( posts ).map( key => <StudioPost key={key} data={ posts[key] } /> )
 
 		return (

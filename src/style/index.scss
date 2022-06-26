@@ -696,19 +696,28 @@ button {
 .players-list {
   display: flex;
   flex-wrap: wrap;
+
+  .player-card-wrapper:nth-child(3n) {
+    padding-right: 0;
+  }
+}
+
+.player-card-wrapper {
+  margin-bottom: $marge*2;
+  padding-right: $marge*2;
+  width: 33.33%;
 }
 
 .player-card {
-  width: 300px;
   display: flex;
   align-items: center;
   padding: $marge*2;
-  margin: 0 $marge*2 $marge*2 0;
+  margin-bottom: 0;
 
   .class-icon {
     margin: 0 $marge*2 0 0;
     display: flex;
-    align-items: center
+    align-items: center;
   }
 
 }

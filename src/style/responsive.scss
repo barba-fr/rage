@@ -127,12 +127,29 @@
 
 @media only screen and ( max-width: 880px ) {
     
+    /* ROSTER */
     #rosters {
         flex-direction: column;
     }
     
     .roster {
         width: 100%;
+    }
+
+    .players-list {   
+           
+        .player-card-wrapper:nth-child(3n) {
+            padding-right: $marge*2;
+        }
+
+        .player-card-wrapper:nth-child(2n) {
+            padding-right: 0;
+        }
+
+      }
+
+    .player-card-wrapper {
+        width: 50%;
     }
     
     #stormrage {
@@ -156,6 +173,19 @@
 }
 
 @media only screen and ( max-width: 740px ) {
+
+    /* ROSTER */
+    .players-list {   
+
+        .player-card-wrapper:nth-child(n) {
+            padding-right: 0;
+        }
+
+      }
+
+    .player-card-wrapper {
+        width: 100%;
+    }
 
     #close-auth {
         font-size: 1rem;

@@ -59,11 +59,11 @@ function Header(props) {
                                 <IoHome /> Home
                             </NavLink>
                         </li>
-                        {/* <li>
+                        <li>
                             <NavLink to="/roster" onClick={toggleMenu}>
                                 <IoPeopleSharp /> Roster
                             </NavLink>
-                        </li> */}
+                        </li>
                         <li>
                             <NavLink to="/studio" onClick={toggleMenu}>
                                 <IoFilmOutline /> Studio
