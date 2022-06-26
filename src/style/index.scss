@@ -56,7 +56,7 @@ header {
 
 #responsive-menus {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex: 1;
   margin-left: $marge*5;
   padding-right: $marge*2;
@@ -89,6 +89,8 @@ header {
 }
 
 nav {
+
+  border-right: 1px solid $grey;
   
   ul {
     display: flex;
