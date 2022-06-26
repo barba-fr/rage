@@ -26,7 +26,7 @@ function Roster(props) {
     const cards = role => {
         const rosterState = [...roster]
         let roleState = rosterState.filter( i => i.role === role )
-        const cardList = Object.keys( roleState ).map( key => <PlayerCard key={key} data={roleState[key]} /> )
+        const cardList = Object.keys( roleState ).map( key => <PlayerCard key={key} data={roleState[key]} admin={props.admin} /> )
         return cardList
     }
 

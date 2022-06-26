@@ -709,7 +709,7 @@ button {
     background-color: $dark;
     border-radius: $corner;
     border: 1px solid lighten($dark, 3%);
-    padding: 0 $marge*2;
+    padding: $marge*2;
 
     a {
       display: flex;
@@ -729,6 +729,7 @@ button {
   align-items: center;
   padding: $marge*2;
   margin-bottom: 0;
+  position: relative;
 
   .class-icon {
     margin: 0 $marge*2 0 0;
@@ -736,6 +737,19 @@ button {
     align-items: center;
   }
 
+}
+
+.delete-player {
+  font-size: 1.25rem;
+  position: absolute;
+  top: $marge*2;
+  right: $marge*2;
+  cursor: pointer;
+  @include trans;
+
+  &:hover {
+    color: $blood;
+  }
 }
 
 .card-player-body {
