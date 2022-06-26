@@ -710,6 +710,7 @@ button {
     border-radius: $corner;
     border: 1px solid lighten($dark, 3%);
     padding: $marge*2;
+    height: 95px;
 
     a {
       display: flex;
@@ -722,6 +723,15 @@ button {
   margin-bottom: $marge*2;
   padding-right: $marge*2;
   width: 33.33%;
+  height: 95px;
+
+  &.deleting {
+    opacity: .33;
+  }
+
+  &.deleted {
+    display: none;
+  }
 }
 
 .player-card {

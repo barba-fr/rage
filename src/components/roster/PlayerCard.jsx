@@ -1,24 +1,34 @@
+import { useState } from 'react'
 import { IoCloseSharp } from 'react-icons/io5'
 
 import { db } from '../../firebase'
 
 function PlayerCard(props) {
 
+    const [deleting, setDeleting] = useState('')
+
     const deletePlayer = () => {
         const name = props.data.name
-        console.log(name);
-        db.collection('roster')
-            .where('name', '==', name)
-            .get()
-            .then( result => {
-                result.forEach( doc => {
-                    doc.ref.delete()
+
+        setDeleting('deleting') 
+
+        setTimeout( () => {
+            db.collection('roster')
+                .where('name', '==', name)
+                .get()
+                .then( result => {
+                    result.forEach( doc => {
+                        doc.ref.delete()
+                    } )
                 } )
-            } )
+                .then(() => {
+                    setDeleting('deleted')
+                })
+        }, 250 )
     }
 
     return (
-        <div className="player-card-wrapper">
+        <div className={`player-card-wrapper ${ deleting }`}>
 
             <div className="card player-card">
 
