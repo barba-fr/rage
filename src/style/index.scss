@@ -336,6 +336,14 @@ button {
 .studio-post-header {
   h2 {
     margin-bottom: -$marge;
+    display: flex;
+    align-items: center;
+
+    svg {
+      position: relative;
+      top: -5px;
+      margin-right: $marge;
+    }
   }
 }
 

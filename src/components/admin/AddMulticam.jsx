@@ -11,6 +11,7 @@ function AddMulticam(props) {
 
     const [camCount, setCamCount] = useState(['cam'])
     const [form, setForm] = useState({
+        multicam: true,
         titre: '',
         date: '',
         timestamp: '',
@@ -53,21 +54,6 @@ function AddMulticam(props) {
 
     }
 
-    const addCam = () => {
-        let newCamCount = [...camCount]
-        newCamCount.push('cam')
-
-        const newForm = {...form}
-        form.source.push(cam)
-
-        setForm( newForm )
-        setCamCount( newCamCount )
-        setCam({
-            auteur: '',
-            lien: ''
-        })
-    }
-
     const changeTitre = e => {
         let newForm = {...form}
         newForm.titre = e.target.value
@@ -80,23 +66,54 @@ function AddMulticam(props) {
         setCam( newCam)      
     }
 
+    const addCam = () => {
+
+        if (cam.auteur === '' ) {
+            props.sendToast('danger', 'Le champ "Auteur" est vide.', 'La personne qui a enregistré ce point de vue risque de vous en vouloir !')
+        } else if ( cam.lien === '' ) {
+            props.sendToast('danger', 'Le champ "Lien" est vide.', 'Sans lien vers la vidéo, rien ne s\'affichera !')
+        } else {
+
+            let newCamCount = [...camCount]
+            newCamCount.push('cam')
+
+            const newForm = {...form}
+            form.source.push(cam)
+
+            setForm( newForm )
+            setCamCount( newCamCount )
+            setCam({
+                auteur: '',
+                lien: ''
+            })
+
+        }
+   
+    }
+
     const submitMultiCam = e => {
         e.preventDefault()
 
         let newForm = {...form}
-        const now = new Date()
-        const date = format(now, 'dd/MM/yyyy')
-        const timestamp = getTime(now)
+            const now = new Date()
+            const date = format(now, 'dd/MM/yyyy')
+            const timestamp = getTime(now)
 
-        newForm.date = date
-        newForm.timestamp = timestamp
-        newForm.source.push(cam)
+        if (cam.titre === '' ) {
+            props.sendToast('danger', 'Le champ "Titre" est vide.', 'Donnez un titre à votre vidéo')
+        } else if ( cam.auteur === '' ) {
+            props.sendToast('danger', 'Le champ "Auteur" est vide.', 'La personne qui a enregistré ce point de vue risque de vous en vouloir !')
+        } else if ( newForm.lien === '' ) {
+            props.sendToast('danger', 'Le champ "Lien" est vide.', 'Sans lien vers la vidéo, rien ne s\'affichera !')
+        } else {
 
-        if ( newForm.titre !== '' ) {
+            newForm.date = date
+            newForm.timestamp = timestamp
+            newForm.source.push(cam)
+            
             db.collection('studio').add( newForm )
             navigate('/studio')
-        } else {
-            props.sendToast('danger', 'Le champ "Titre" est vide.', 'Donnez un titre à la vidéo.')
+
         }
 
     }

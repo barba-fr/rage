@@ -7,6 +7,7 @@ import {db} from "../../firebase";
 import AddVideoModal from "../admin/AddVideoModal";
 
 import StudioPost from "./StudioPost";
+import StudioPostMultiCam from "./StudioPostMultiCam";
 
 class Studio extends React.Component {
 
@@ -88,7 +89,16 @@ class Studio extends React.Component {
 		posts.sort( function(a, b) {
 			return b.timestamp - a.timestamp
 		}  )
-		posts = Object.keys( posts ).map( key => <StudioPost key={key} data={ posts[key] } /> )
+		// posts = Object.keys( posts ).map( key => <StudioPost key={key} data={ posts[key] } /> )
+		posts = Object.keys( posts ).map( key => {
+
+			if ( posts[key].multicam === true ) {
+				return <StudioPostMultiCam key={key} data={ posts[key] } />
+			} else {
+				return <StudioPost key={key} data={ posts[key] } />
+			}
+
+		} )
 
 		return (
 
