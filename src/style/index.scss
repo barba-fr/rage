@@ -314,6 +314,16 @@ button {
   .roster-header {
     margin-bottom: $marge*2;
   }
+
+  .control {
+    svg {
+      margin-left: $marge*2;
+    }
+  }
+}
+
+#multicam-control {
+  position: relative;
 }
 
 .studio-post {
@@ -421,6 +431,34 @@ button {
     font-size: 5rem;
   }
 
+}
+
+/* MULTICAM */
+#multi-cam {
+  .roster-header {
+    margin-bottom: $marge*2;
+  }
+}
+
+#multi-cam-titre {
+  margin-bottom: $marge*4;
+}
+
+#add-cam {
+  svg {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-right: auto;
+    @include trans;
+
+    &:hover {
+      color: $blood;
+    }
+  }
+}
+
+#multi-form {
+  margin-bottom: $marge*4;
 }
 
 /* LOGIN FORM */
@@ -726,6 +764,7 @@ button {
   padding-right: $marge*2;
   width: 33.33%;
   height: 95px;
+  @include trans;
 
   &.deleting {
     opacity: .33;

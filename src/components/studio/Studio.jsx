@@ -1,5 +1,6 @@
 import React from "react";
-import { IoAddCircleSharp } from 'react-icons/io5';
+import { Link } from 'react-router-dom'
+import { IoAddCircleSharp, IoVideocamSharp } from 'react-icons/io5';
 
 import {db} from "../../firebase";
 
@@ -13,7 +14,8 @@ class Studio extends React.Component {
 
 		posts: [],
 
-		addVideoModal: 'closed'
+		addVideoModal: 'closed',
+		adminMulticam: 'closed',
 
 	}
 
@@ -50,9 +52,15 @@ class Studio extends React.Component {
 	}
 
 	closeModal = () => {
-		this.setState({ addVideoModal: 'closing' }, () => {
+		this.setState({ 
+			addVideoModal: 'closing',
+			adminMulticam: 'closing',
+		}, () => {
 			setTimeout( () => {
-				this.setState({ addVideoModal: 'closed' })
+				this.setState({ 
+					addVideoModal: 'closed',
+					adminMulticam: 'closed',
+				})
 			}, 150 )
 		})
 	}
@@ -60,7 +68,16 @@ class Studio extends React.Component {
 	AdminControl = (props) => {
 		return(
 			<div className="admin-controls">
-				<IoAddCircleSharp onClick={this.adminAddVideo} />
+
+				<div className="control">
+					<Link to="add-multicam">
+						<IoVideocamSharp />
+					</Link>
+				</div>
+				<div className="control">
+					<IoAddCircleSharp onClick={this.adminAddVideo} />
+				</div>
+
 			</div>
 		)
 	} 
@@ -85,7 +102,6 @@ class Studio extends React.Component {
 					{ posts }
 
 					{this.state.addVideoModal !== 'closed' ? <AddVideoModal closeModal={this.closeModal} isClosing={ this.state.addVideoModal } /> : null}
-
 				</main>
 
 		);

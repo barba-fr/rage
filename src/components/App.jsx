@@ -9,6 +9,7 @@ import Toast from "./admin/Toast";
 import Home from './home/Home'
 import Studio from './studio/Studio'
 import Post from './studio/Post'
+import AdminMulticam from './admin/AddMulticam'
 import Roster from "./roster/Roster";
 import RosterAdd from './admin/RosterAdd';
 
@@ -129,6 +130,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<Home admin={admin} />} />
 					<Route exact path="studio" element={<Studio admin={admin} />} />
+					<Route exact path="studio/add-multicam" element={<AdminMulticam admin={admin} sendToast={sendToast} />} />
 					<Route exact path="studio/video/:id" element={<Post admin={admin} />} />
 					<Route exact path="roster" element={<Roster admin={admin} />} />
 					<Route exact path="roster/add/:role" element={<RosterAdd admin={admin} sendToast={sendToast} />} />

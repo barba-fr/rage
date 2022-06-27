@@ -58,6 +58,7 @@ nav {
 
 a.button, button {
     display: flex;
+    align-items: center;
     color: $grey;
     border-radius: $corner;
     padding: $marge/2 $marge*2;
@@ -189,6 +190,10 @@ a.button, button {
         &:focus {
             outline: none;
             background-color: #fff;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
         }
     }
 
