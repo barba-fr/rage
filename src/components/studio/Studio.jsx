@@ -22,23 +22,22 @@ class Studio extends React.Component {
 
 	_isMounted = false
 
+	getPosts = () => {
+
+		let postData = []
+		db.collection('studio').get().then( docs => {
+			docs.forEach( doc => {
+				postData.push( doc.data() )
+			} )
+			this.setState({ posts: postData })
+		} )
+
+	}
+
 	componentDidMount() {
 
 		this._isMounted = true
-
-		const getPosts = () => {
-
-			let postData = []
-			db.collection('studio').onSnapshot( docs => {
-				docs.forEach( doc => {
-					postData.push( doc.data() )
-				} )
-				this.setState({ posts: postData })
-			} )
-
-		}
-
-		getPosts()
+		this.getPosts()
 
 	}
 
@@ -89,7 +88,7 @@ class Studio extends React.Component {
 		posts.sort( function(a, b) {
 			return b.timestamp - a.timestamp
 		}  )
-		// posts = Object.keys( posts ).map( key => <StudioPost key={key} data={ posts[key] } /> )
+
 		posts = Object.keys( posts ).map( key => {
 
 			if ( posts[key].multicam === true ) {
@@ -111,7 +110,7 @@ class Studio extends React.Component {
 
 					{ posts }
 
-					{this.state.addVideoModal !== 'closed' ? <AddVideoModal closeModal={this.closeModal} isClosing={ this.state.addVideoModal } /> : null}
+					{this.state.addVideoModal !== 'closed' ? <AddVideoModal closeModal={this.closeModal} isClosing={ this.state.addVideoModal } updatePosts={this.getPosts} /> : null}
 				</main>
 
 		);

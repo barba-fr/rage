@@ -12,7 +12,7 @@ function AddVideoModal(props) {
         timestamp: null,
         date: '',
         titre: '',
-        source: []
+        source: ''
     })
 
     const [toast, setToast] = useState({
@@ -32,7 +32,7 @@ function AddVideoModal(props) {
         if ( id !== 'source' ) {
             newForm[id] = e.target.value
         } else {
-            newForm.source = [e.target.value]
+            newForm.source = e.target.value
         }
         setForm( newForm )
 
@@ -62,6 +62,7 @@ function AddVideoModal(props) {
             db.collection('studio')
                 .add(submitForm)
                 .then( () => {
+                    props.updatePosts(submitForm);
                     closeModal()
                 } )
 
