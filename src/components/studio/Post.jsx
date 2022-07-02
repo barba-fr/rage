@@ -17,7 +17,7 @@ function Post(props) {
         db.collection('studio').where('timestamp', '==', Number(id)).get()
             .then( docs => {
                 docs.forEach( doc => {
-                    setPost(doc.data())
+                    setPost(doc.data());
                 } )
             } )
 
@@ -35,7 +35,7 @@ function Post(props) {
                 </div>
 
                 <div className="post-content">
-                    { post.source && post.source.length === 1 ? <SimpleVideo source={post.source} /> : null}
+                    { post.multicam !== true ? <SimpleVideo /> : null}
                 </div>
 
             </div>

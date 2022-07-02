@@ -1,20 +1,44 @@
 import { useRef, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import { IoPlaySharp } from 'react-icons/io5'
+
+import { db } from '../../firebase'
 
 function SimpleVideo(props) {
 
     let media = useRef()
     
-    
-    const [isPlaying, setIsPlaying] = useState(false)
 
+    const params = useParams()
+    const [source, setSource] = useState('')
+    const [isPlaying, setIsPlaying] = useState(false)
+    
     useEffect( () => {
 
-        media.current.volume = .5
+        media.current.addEventListener('volumechange', e => {
+            localStorage.setItem('rageMediaVolume', media.current.volume)
+        })
+
+        const rageMediaVolume = localStorage.getItem('rageMediaVolume')
+        if ( rageMediaVolume ) {
+            media.current.volume = rageMediaVolume
+        } else {
+            media.current.volume = .5
+            localStorage.setItem('rageMediaVolume', .5)
+        }
 
         isPlaying === true ? media.current.play() : media.current.pause()
 
-    }, [isPlaying] )
+        const id = params.id
+
+        db.collection('studio').where('timestamp', '==', Number(id)).get()
+            .then( docs => {
+                docs.forEach( doc => {
+                    setSource( doc.data().source )
+                } )
+            } )
+
+    } )
     
     const togglePlayPause = () => {
         setIsPlaying(!isPlaying)
@@ -31,11 +55,10 @@ function SimpleVideo(props) {
     return (
         <div className="ratio">
 
-            { isPlaying === false ? <Overlay /> : null }
+            { isPlaying === false ? <Overlay onClick={togglePlayPause} /> : null }
 
-            <video ref={media} onClick={togglePlayPause} controls>
-                <source src={props.source[0]} type="video/mp4" />
-                <source src={props.source[0]} type="video/ogg" />
+            <video ref={media} src={source} controls onClick={togglePlayPause}>
+                <source src={source} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
 
