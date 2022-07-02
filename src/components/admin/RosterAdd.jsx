@@ -71,7 +71,7 @@ function RosterAdd(props) {
         cac : [
             {
                 class: 'shaman',
-                spe: ['amelioration']
+                spe: ['amélioration']
             },
             {
                 class: 'druid',
@@ -79,7 +79,7 @@ function RosterAdd(props) {
             },
             {
                 class: 'warrior',
-                spe: ['amelioration', 'fureur']
+                spe: ['arme', 'fureur']
             },
             {
                 class: 'paladin',
