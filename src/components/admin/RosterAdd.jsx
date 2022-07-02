@@ -33,7 +33,7 @@ function RosterAdd(props) {
         let classes = allRoles[params.role]
         setClassesOfRole(classes);
 
-    }, [form] )
+    }, [] )
 
     const allRoles = {
         tank: [
