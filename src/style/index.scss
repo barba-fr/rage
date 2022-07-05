@@ -414,7 +414,7 @@ button {
   padding-bottom: 56.25%;
 }
 
-.ratio > * {
+.ratio > video {
   position: absolute;
   top: 0;
   left: 0;
@@ -429,6 +429,11 @@ button {
 }
 
 .ratio .video-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
   background-color: rgba( $dark, .5 );
   display: flex;
@@ -450,6 +455,65 @@ button {
 
 #multi-cam-titre {
   margin-bottom: $marge*4;
+}
+
+video {
+
+  @include trans;
+  position: relative;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.inactive {
+    opacity: 0;
+    z-index: -100;
+  }
+
+}
+
+#multicam-controls {
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $dark;
+  border: 1px solid lighten( $dark, 3% );  
+  display: flex;
+  align-items: center;
+}
+
+#multicam-selection {
+  display: flex;
+  
+  .player-card-wrapper {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+    flex: 1;
+
+    &.selected .player-card {
+      background-color: lighten( $dark, 5% );
+    }
+  }
+
+  .player-card {
+    border-radius: 0;
+    border: none;
+    border-right: 1px solid lighten( $dark, 3% );
+  }
+
+}
+
+#multicam-buttons {
+  margin-left: auto;
+  padding: $marge*2;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 #add-cam {

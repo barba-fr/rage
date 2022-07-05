@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import SimpleVideo from './SimpleVideo'
+import MultiCamVideo from './multicam/MultiCamVideo'
 
 import {db} from "../../firebase";
 
@@ -31,11 +32,12 @@ function Post(props) {
 
                 <div className="post-header roster-header">
                     <h1>{ post.titre }</h1>
-                    <p>{ post.auteur }, le {post.date}</p>
+                    { post.multicam === true ? <p>Publié le {post.date}</p> : <p>{ post.auteur }, le {post.date}</p> }
+                    
                 </div>
 
                 <div className="post-content">
-                    { post.multicam !== true ? <SimpleVideo /> : null}
+                    { post.multicam !== true ? <SimpleVideo /> : <MultiCamVideo />}
                 </div>
 
             </div>

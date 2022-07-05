@@ -8,12 +8,12 @@ function SimpleVideo(props) {
 
     let media = useRef()
     
-
     const params = useParams()
     const [source, setSource] = useState('')
     const [isPlaying, setIsPlaying] = useState(false)
     
     useEffect( () => {
+        let _isMounted = true
 
         media.current.addEventListener('volumechange', e => {
             localStorage.setItem('rageMediaVolume', media.current.volume)
@@ -33,10 +33,18 @@ function SimpleVideo(props) {
 
         db.collection('studio').where('timestamp', '==', Number(id)).get()
             .then( docs => {
-                docs.forEach( doc => {
-                    setSource( doc.data().source )
-                } )
+                if ( _isMounted === true ) {
+
+                    docs.forEach( doc => {
+                        setSource( doc.data().source )
+                    } )
+                    
+                }
             } )
+
+        return () => {
+            _isMounted = false
+        }
 
     } )
     
