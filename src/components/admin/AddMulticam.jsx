@@ -62,8 +62,19 @@ function AddMulticam(props) {
 
     const changeCam = (e, target) => {
         let newCam = {...cam}
-        newCam[target] = e.target.value
-        setCam( newCam)      
+
+        if ( target === 'auteur' ) {
+            db.collection('roster').where('name', '==', e.target.value.toLowerCase()).get()
+                .then( docs => {
+                    docs.forEach( doc => {
+                        newCam.auteur = doc.data()
+                    } )
+                } )
+        } else {
+            newCam[target] = e.target.value
+        }
+
+        setCam( newCam)  
     }
 
     const addCam = () => {
