@@ -446,17 +446,6 @@ button {
 
 }
 
-/* MULTICAM */
-#multi-cam {
-  .roster-header {
-    margin-bottom: $marge*2;
-  }
-}
-
-#multi-cam-titre {
-  margin-bottom: $marge*4;
-}
-
 video {
 
   @include trans;
@@ -473,6 +462,17 @@ video {
 
 }
 
+/* MULTICAM */
+#multi-cam {
+  .roster-header {
+    margin-bottom: $marge*2;
+  }
+}
+
+#multi-cam-titre {
+  margin-bottom: $marge*4;
+}
+
 #multicam-controls {
   position: absolute;
   z-index: 1000;
@@ -483,6 +483,32 @@ video {
   border: 1px solid lighten( $dark, 3% );  
   display: flex;
   align-items: center;
+  @include trans;
+  transform: translateY(100%);
+  
+  &:hover {
+    transform: translateY(0);
+  }
+
+  .grabber {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    transform: translateY(-100%);
+  }
+
+  .grabber-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $dark;
+    padding: $marge/4 $marge*4;
+    border-top-left-radius: $marge;
+    border-top-right-radius: $marge;
+    transform: translateX(-50%);
+  }
+
 }
 
 #multicam-selection {
@@ -504,6 +530,14 @@ video {
     border-radius: 0;
     border: none;
     border-right: 1px solid lighten( $dark, 3% );
+    cursor: pointer;
+    position: relative;
+    @include trans;
+
+    &:hover {
+      background-color: lighten( $dark, 5% );
+    }
+
   }
 
 }
@@ -514,6 +548,15 @@ video {
   font-size: 2rem;
   display: flex;
   align-items: center;
+
+  svg {
+    cursor: pointer;
+    @include trans;
+
+    &:hover {
+      color: $blood;
+    }
+  }
 }
 
 #add-cam {

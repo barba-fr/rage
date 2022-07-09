@@ -1,4 +1,3 @@
-
 function PlayerSelect(props) {
 
     const selected = Number(props.povId) === Number(props.selected) ? 'selected' : 'not-selected'

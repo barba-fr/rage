@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom'
-import { IoPlaySharp, IoExpandSharp } from 'react-icons/io5'
+import { IoPlaySharp, IoExpandSharp, IoContractSharp, IoReorderTwoSharp } from 'react-icons/io5'
 
 import { db } from '../../../firebase'
 
@@ -8,12 +8,16 @@ import Pov from './Pov';
 import PlayerSelect from './PlayerSelect';
 
 function MultiCamVideo(props) {
+
+    const fullscreen = useRef()
     
     const params = useParams()
 
     const [camsData, setCamsData] = useState('')
     const [selector, setSelector] = useState([])
     const [selected, setSelected] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [fullScreen, setFullScreen] = useState(false)
     
     useEffect( () => {
 
@@ -52,6 +56,14 @@ function MultiCamVideo(props) {
 
     }, [params.id] )
 
+    const Overlay = () => {
+        return(
+            <div className="video-overlay" onClick={() => setIsPlaying(true)}>
+                <IoPlaySharp />
+            </div>
+        )
+    }
+
     const povs = () => {
         return Object.keys(camsData).map(key => 
             <Pov 
@@ -59,12 +71,13 @@ function MultiCamVideo(props) {
                 pov={camsData[key]} 
                 povId={key}
                 selected={selected}
+                isPlaying={isPlaying}
+                isFullScreen={fullScreen}
             /> 
         )
     }
 
     const showSelectors = () => {
-
         return Object.keys(selector).map( key => 
             <PlayerSelect 
                 key={key} 
@@ -72,28 +85,49 @@ function MultiCamVideo(props) {
                 povId={key}
                 selected={selected}
                 isSelected={isSelected}
-            /> )
-        
+            /> 
+        )
     }
 
     const isSelected = number => {
         setSelected( Number(number) )
     }
 
+    const togglePlayPause = () => {
+        setIsPlaying( !isPlaying )
+    }
+
+    const toggleFullScreen = () => {
+        if ( fullScreen === false ) {
+            fullscreen.current.requestFullscreen()
+        } else {
+            document.exitFullscreen()
+        }
+        setFullScreen( !fullScreen )
+    }
+
     return (
-        <div className="ratio">
+        <div ref={fullscreen} className={`ratio ${ fullScreen === true ? 'full-screen' : 'no-full-screen' }`}>
+
+            { isPlaying === false ? <Overlay onClick={togglePlayPause} /> : null }
 
             { povs() }
 
             <div id="multicam-controls">
+
+                <div className={`grabber`}>
+                    <div className="grabber-content">
+                        <IoReorderTwoSharp />
+                    </div>
+                </div>
 
                 <div id="multicam-selection">
                     { showSelectors() }
                 </div>
 
                 <div id="multicam-buttons">
-                    <IoPlaySharp />
-                    <IoExpandSharp />
+                    <IoPlaySharp onClick={togglePlayPause} />
+                    { fullScreen === false ? <IoExpandSharp onClick={toggleFullScreen} /> : <IoContractSharp onClick={toggleFullScreen} /> }    
                 </div>
 
             </div>
