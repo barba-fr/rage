@@ -27,9 +27,9 @@ class Studio extends React.Component {
 		let postData = []
 		db.collection('studio').get().then( docs => {
 			docs.forEach( doc => {
-				// if ( !doc.data().multicam ) {
+				if ( !doc.data().multicam ) {
 					postData.push( doc.data() )
-				// }
+				}
 			} )
 			this.setState({ posts: postData })
 		} )
