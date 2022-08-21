@@ -15,6 +15,7 @@ function AddMulticam(props) {
         titre: '',
         date: '',
         timestamp: '',
+        son: '',
         source: []
     })
     const [cam, setCam] = useState({
@@ -57,6 +58,12 @@ function AddMulticam(props) {
     const changeTitre = e => {
         let newForm = {...form}
         newForm.titre = e.target.value
+        setForm( newForm )
+    }
+
+    const changeSon = e => {
+        let newForm = {...form}
+        newForm.son = e.target.value
         setForm( newForm )
     }
 
@@ -141,6 +148,11 @@ function AddMulticam(props) {
                 <div className="form-group" id="multi-cam-titre">
                     <label htmlFor="titre">Titre</label>
                     <input type="text" id="titre" onChange={changeTitre} />
+                </div>
+
+                <div className="form-group" id="multi-cam-son">
+                    <label htmlFor="son">Lien piste son</label>
+                    <input type="text" id="son" onChange={changeSon} />
                 </div>
 
                 { multiForm() }

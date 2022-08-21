@@ -6,7 +6,9 @@ function StudioPostMultiCam(props) {
         <div className="studio-post multi card">
             <div className="studio-post-header">
                 <h2>
-                    <IoVideocamSharp /> { props.data.titre }
+                    <Link to={ '/studio/video/' + props.data.timestamp } title="Voir cette vidéo">
+                        <IoVideocamSharp /> { props.data.titre }
+                    </Link>
                 </h2>
                 <p>Le <span className="date">{ props.data.date }</span></p>
             </div>

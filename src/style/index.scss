@@ -307,8 +307,6 @@ button {
   background-color: $blood;
 }
 
-/* STORMRAGE */
-
 /* STUDIO */
 #blog {
   .roster-header {
@@ -322,10 +320,6 @@ button {
   }
 }
 
-#multicam-control {
-  position: relative;
-}
-
 .studio-post {
   padding: $marge*2;
   display: flex;
@@ -336,8 +330,12 @@ button {
 .studio-post-header {
   h2 {
     margin-bottom: -$marge;
-    display: flex;
-    align-items: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      @include trans;
+    }
 
     svg {
       position: relative;
@@ -400,6 +398,7 @@ button {
 
 .post-content {
   padding: $marge*2;
+  position: relative;
 }
 
 .ratio {
@@ -463,101 +462,149 @@ video {
 }
 
 /* MULTICAM */
-#multi-cam {
-  .roster-header {
-    margin-bottom: $marge*2;
-  }
+#multicam {
+  position: relative;
 }
 
-#multi-cam-titre {
-  margin-bottom: $marge*4;
+#pov-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+#multicam-audio {
+  display: none;
+}
+
+video {
+
+  @include trans;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.inactive {
+    opacity: 0;
+  }
+
 }
 
 #multicam-controls {
   position: absolute;
-  z-index: 1000;
+  z-index: 100;
+  width: 100%;
   bottom: 0;
   left: 0;
-  width: 100%;
-  background-color: $dark;
-  border: 1px solid lighten( $dark, 3% );  
-  display: flex;
-  align-items: center;
-  @include trans;
   transform: translateY(100%);
-  
+  @include trans;
+
   &:hover {
     transform: translateY(0);
   }
 
-  .grabber {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 50%;
-    transform: translateY(-100%);
-  }
-
-  .grabber-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: $dark;
-    padding: $marge/4 $marge*4;
-    border-top-left-radius: $marge;
-    border-top-right-radius: $marge;
-    transform: translateX(-50%);
-  }
-
-}
-
-#multicam-selection {
-  display: flex;
-  
-  .player-card-wrapper {
-    margin: 0;
-    padding: 0;
-    height: auto;
-    width: auto;
-    flex: 1;
-
-    &.selected .player-card {
-      background-color: lighten( $dark, 5% );
-    }
-  }
-
-  .player-card {
-    border-radius: 0;
-    border: none;
-    border-right: 1px solid lighten( $dark, 3% );
-    cursor: pointer;
-    position: relative;
-    @include trans;
-
-    &:hover {
-      background-color: lighten( $dark, 5% );
-    }
-
-  }
-
-}
-
-#multicam-buttons {
-  margin-left: auto;
-  padding: $marge*2;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-
   svg {
-    cursor: pointer;
     @include trans;
+    cursor: pointer;
 
     &:hover {
       color: $blood;
     }
   }
 }
+
+#handler {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 50%;
+  width: 200px;
+  padding: 0 $marge*2;
+  background-color: $dark;
+  border: 1px solid lighten($dark, 3%);
+  border-bottom: none;
+  border-top-left-radius: $corner;
+  border-top-right-radius: $corner;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate( -50%, -100% );
+}
+
+#media-controls {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  transform: translateY(-100%);
+  display: flex;
+  padding-bottom: $marge;
+  font-size: 1.25rem;
+
+  & > * {
+    margin-right: $marge;
+  }
+}
+
+#volume {
+  display: flex;
+  align-items: center;
+  margin-left: $marge;
+}
+
+#volume-bar-container {
+  width: 100px;
+  height: 10px;
+  background-color: lighten( $dark, 5% );
+  margin-left: $marge;
+  cursor: pointer;
+}
+
+#volume-bar {
+  height: 100%;
+  background-color: $blood;
+  @include trans;
+}
+
+#pov-controls {
+  display: flex;
+
+  .player-card {
+    padding: 0;
+    padding-right: 0;
+  }
+
+  .player-card-wrapper {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    height: auto;
+
+    &.selected {
+      .player-card {
+        background-color: lighten($dark, 3%);
+      }
+    }
+  }
+
+  .player-card {
+    padding: $marge;
+    border-right-width: 0;
+    border-radius: 0;
+    cursor: pointer;
+    @include trans;
+  }
+
+  .player-card-wrapper:last-child .player-card {
+    border-right-width: 1px;
+  }
+
+  .player-name {
+    font-size: 1rem;
+  }
+
+}
+
+/* MULTICAM ADMIN */
 
 #add-cam {
   svg {

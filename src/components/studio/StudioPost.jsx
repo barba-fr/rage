@@ -6,7 +6,9 @@ function StudioPost(props) {
         <div className="studio-post card">
             <div className="studio-post-header">
                 <h2>
-                    <IoFilmSharp /> { props.data.titre }
+                    <Link to={ '/studio/video/' + props.data.timestamp } title="Voir cette vidéo">
+                        <IoFilmSharp /> { props.data.titre }
+                    </Link>
                 </h2>
                 <p><span className="auteur">{ props.data.auteur }</span>, le <span className="date">{ props.data.date }</span></p>
             </div>

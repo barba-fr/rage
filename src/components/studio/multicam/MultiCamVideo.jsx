@@ -1,133 +1,161 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { IoPlaySharp, IoExpandSharp, IoContractSharp, IoReorderTwoSharp } from 'react-icons/io5'
-
 import { db } from '../../../firebase'
 
-import Pov from './Pov';
-import PlayerSelect from './PlayerSelect';
+import {    IoPlaySharp, 
+            IoPauseSharp, 
+            IoExpandSharp, 
+            IoContractSharp,
+            IoVolumeMediumSharp,
+            IoEllipsisHorizontalSharp } from 'react-icons/io5'
+
+import PovSelector from './PovSelector'
+import Pov from './Pov'
 
 function MultiCamVideo(props) {
 
-    const fullscreen = useRef()
-    
+    const audio = useRef()
+    const wrapper = useRef()
     const params = useParams()
 
-    const [camsData, setCamsData] = useState('')
-    const [selector, setSelector] = useState([])
-    const [selected, setSelected] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
-    const [fullScreen, setFullScreen] = useState(false)
-    
+    /* DATA */
+    const [videoData, setVideoData] = useState({})
+    const [povSources, setPovSources] = useState([])
+
+    /* CHANGE POV SELECTION */
+    const [selected, setSelected] = useState(1)
+
+    /* MEDIA CONTROL */
+    const [isPlaying, setIsPlaying] = useState( false )
+    const [isFullScreen, setIsFullScreen] = useState(false)
+    const [mediaVolume, setMediaVolume] = useState( 50 )
+    const [time, setTime] = useState( 0 )
+
     useEffect( () => {
-
-        let _isMounted = true
-
-        const id = params.id
         
-        // Get video data
-        db.collection('studio').where( 'timestamp', '==', Number(id) ).get()
-        .then( docs => {
+        /* DATA */
+        db.collection('studio').where('timestamp', '==', Number(params.id)).get()
+            .then( docs => {
+
                 docs.forEach( doc => {
-
-                    const cams = doc.data().source
-                    if ( _isMounted === true ) {
-                        setCamsData( cams );
-                        setSelector( doc.data().source )
-                    }
-                    
-                    const newSelector = []
-                    cams.forEach( cam => {
-                        db.collection('roster').where('name', '==', cam.auteur).get()
-                        .then( players => {
-                            players.forEach( player => {
-                                    newSelector.push( player.data() )
-                                    if ( _isMounted === true ) {
-                                        setSelector( newSelector )
-                                    }
-                                } )
-                            } )
-                    } )
-
+                    setVideoData( doc.data() )
+                    setPovSources( doc.data().source )
                 } )
+
             } )
-                  
-            return () => ( _isMounted = false )
 
-    }, [params.id] )
+        /* MEDIA CONTROL */
+        if ( isPlaying === true ) {
+            audio.current.play()
+        } else {
+            audio.current.pause()
+        }
 
-    const Overlay = () => {
-        return(
-            <div className="video-overlay" onClick={() => setIsPlaying(true)}>
-                <IoPlaySharp />
-            </div>
-        )
-    }
+        const rageMediaVolume = localStorage.getItem('rageMediaVolume')
+        if ( rageMediaVolume ) {
+            audio.current.volume = rageMediaVolume
+            setMediaVolume( Number( rageMediaVolume ) * 100 )
+        } else {
+            audio.current.volume = .5
+            localStorage.setItem('rageMediaVolume', .5)
+            setMediaVolume( 50 )
+        }
 
-    const povs = () => {
-        return Object.keys(camsData).map(key => 
-            <Pov 
-                key={key} 
-                pov={camsData[key]} 
-                povId={key}
-                selected={selected}
-                isPlaying={isPlaying}
-                isFullScreen={fullScreen}
-            /> 
-        )
-    }
+    }, [isPlaying, params.id] )
 
-    const showSelectors = () => {
-        return Object.keys(selector).map( key => 
-            <PlayerSelect 
-                key={key} 
-                data={selector[key].auteur} 
-                povId={key}
-                selected={selected}
-                isSelected={isSelected}
-            /> 
-        )
-    }
-
-    const isSelected = number => {
-        setSelected( Number(number) )
-    }
-
+    /* MEDIA CONTROL */
     const togglePlayPause = () => {
+        setTime( audio.current.currentTime )
         setIsPlaying( !isPlaying )
     }
 
     const toggleFullScreen = () => {
-        if ( fullScreen === false ) {
-            fullscreen.current.requestFullscreen()
+        if ( !document.fullscreenElement ) {
+            wrapper.current.requestFullscreen()
+            setIsFullScreen( true )
         } else {
             document.exitFullscreen()
+            setIsFullScreen( false )
         }
-        setFullScreen( !fullScreen )
+    }
+
+    const setVolume = e => {
+        const bounds = e.target.getBoundingClientRect()
+        const x = e.clientX - bounds.left;
+        setMediaVolume( x )
+        localStorage.setItem('rageMediaVolume', x/100)
+        audio.current.volume = x/100
+    }
+
+    /* CHANGE POV SELECTION */
+    const isSelected = id => {
+        setTime( audio.current.currentTime )
+        setSelected( Number(id) )
+    }
+
+    /* COMPONENTS RENDER */
+    const renderPovSelector = () => {
+        return Object.keys(povSources).map( key => 
+            <PovSelector 
+                key={key} 
+                data={povSources[key].auteur} 
+                selected={ Number(key) + 1 === selected && true  } 
+                povId={ Number(key) + 1 } 
+                isSelected={isSelected}
+            />
+        )
+    }
+
+    const renderMediaPlayer = () => {
+        return Object.keys(povSources).map( key => 
+            <Pov
+                key={key}
+                pov={ povSources[key] }
+                povId={ Number(key) + 1 } 
+                isPlaying={ isPlaying }
+                selected={ Number(key) + 1 === selected && true  } 
+                time={ time }
+            />    
+        )
     }
 
     return (
-        <div ref={fullscreen} className={`ratio ${ fullScreen === true ? 'full-screen' : 'no-full-screen' }`}>
+        <div id="multicam">
 
-            { isPlaying === false ? <Overlay onClick={togglePlayPause} /> : null }
+            <div id="pov-wrapper" ref={wrapper}>
 
-            { povs() }
+                <audio ref={audio} src={videoData.son} name="media" controls id="multicam-audio" />
 
-            <div id="multicam-controls">
+                <div className="ratio">
+                    { renderMediaPlayer() }
+                </div>
+            
+                <div id="multicam-controls">
 
-                <div className={`grabber`}>
-                    <div className="grabber-content">
-                        <IoReorderTwoSharp />
+                    <div id="handler">                        
+                        <IoEllipsisHorizontalSharp />
                     </div>
-                </div>
 
-                <div id="multicam-selection">
-                    { showSelectors() }
-                </div>
+                    <div id="media-controls">
+                        { isPlaying === true ? <IoPauseSharp onClick={togglePlayPause} /> : <IoPlaySharp onClick={togglePlayPause} /> }
+                        { isFullScreen === true ? <IoContractSharp onClick={toggleFullScreen} /> : <IoExpandSharp onClick={toggleFullScreen} /> }
+                        <div id="volume">
 
-                <div id="multicam-buttons">
-                    <IoPlaySharp onClick={togglePlayPause} />
-                    { fullScreen === false ? <IoExpandSharp onClick={toggleFullScreen} /> : <IoContractSharp onClick={toggleFullScreen} /> }    
+                            <IoVolumeMediumSharp />
+
+                            <div id="volume-bar-container" onClick={setVolume}>
+                                <div id="volume-bar" style={{ width : mediaVolume + '%' }} />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="pov-controls">
+
+                        { renderPovSelector() }
+
+                    </div>
+
                 </div>
 
             </div>
