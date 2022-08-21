@@ -7,8 +7,10 @@ function Pov(props) {
     useEffect( () => {
 
         media.current.volume = 0
-        if ( props.isPlaying === true && props.selected === true ) {
+        if ( props.isPlaying === true && props.nextSelected === true ) {
             media.current.currentTime = props.time
+            media.current.play()
+        } else if ( props.isPlaying === true && props.selected === true ) {
             media.current.play()
         } else {
             media.current.pause()

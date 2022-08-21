@@ -24,6 +24,7 @@ function MultiCamVideo(props) {
 
     /* CHANGE POV SELECTION */
     const [selected, setSelected] = useState(1)
+    const [nextSelected, setNextSelected] = useState(1)
 
     /* MEDIA CONTROL */
     const [isPlaying, setIsPlaying] = useState( false )
@@ -90,7 +91,10 @@ function MultiCamVideo(props) {
     /* CHANGE POV SELECTION */
     const isSelected = id => {
         setTime( audio.current.currentTime )
-        setSelected( Number(id) )
+        setNextSelected( Number(id) )
+        setTimeout( () => {
+            setSelected( Number(id) )
+        }, 1000 )
     }
 
     /* COMPONENTS RENDER */
@@ -114,6 +118,7 @@ function MultiCamVideo(props) {
                 povId={ Number(key) + 1 } 
                 isPlaying={ isPlaying }
                 selected={ Number(key) + 1 === selected && true  } 
+                nextSelected={ Number(key) + 1 === nextSelected && true }
                 time={ time }
             />    
         )

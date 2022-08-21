@@ -450,15 +450,6 @@ video {
   @include trans;
   position: relative;
 
-  &.active {
-    opacity: 1;
-  }
-
-  &.inactive {
-    opacity: 0;
-    z-index: -100;
-  }
-
 }
 
 /* MULTICAM */
@@ -469,6 +460,15 @@ video {
 #pov-wrapper {
   position: relative;
   overflow: hidden;
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    video {
+      width: 33.33%;
+    }
+  }
 }
 
 #multicam-audio {
@@ -578,6 +578,8 @@ video {
     padding: 0;
     margin: 0;
     height: auto;
+    position: relative;
+    background-color: $dark;
 
     &.selected {
       .player-card {
@@ -587,10 +589,12 @@ video {
   }
 
   .player-card {
+    height: 80px;
     padding: $marge;
     border-right-width: 0;
     border-radius: 0;
     cursor: pointer;
+    background-color: transparent;
     @include trans;
   }
 
@@ -598,8 +602,39 @@ video {
     border-right-width: 1px;
   }
 
+  .pov-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: lighten($dark, 3%);
+
+    &.switching {
+      animation: povloader 1s linear;
+    }
+
+    @keyframes povloader {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  }
+
+  .class-icon {
+    width: 50px;
+    height: 50px;
+  }
+
   .player-name {
     font-size: 1rem;
+  }
+
+  .player-spe {
+    font-size: .8rem;
   }
 
 }
