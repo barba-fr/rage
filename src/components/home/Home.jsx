@@ -19,42 +19,38 @@ class Home extends React.Component {
 		},
 
 		raidList: {
-			gruul: {
-				raidName: "Repaire de Gruul",
-				bossTotal: 2
+			naxxramaslk: {
+				raidName: "Naxxramas",
+				bossTotal: 15
 			},
-			magtheridon: {
-				raidName: "Repaire de Magtheridon",
+			eyeeternity: {
+				raidName: "L'oeil de l'éternité",
 				bossTotal: 1
 			},
-			kara: {
-				raidName: "Karazhan",
-				bossTotal: 12,
+			obsidien: {
+				raidName: "Sanctum Obsidien",
+				bossTotal: 1,
 			},
-			ssc: {
-				raidName: "Caverne du Sanctuaire du Serpent",
-				bossTotal: 6,
+			ulduar: {
+				raidName: "Ulduar",
+				bossTotal: 14,
 			},
-			eye: {
-				raidName: 'Donjon de la Tempête',
-				bossTotal: 4,
-			},
-			hyjal: {
-				raidName: 'Sommet d\'Hyjal',
+			croise: {
+				raidName: 'L\'épreuve du croisé',
 				bossTotal: 5,
 			},
-			bt: {
-				raidName: "Temple Noir",
-				bossTotal: 9,
+			onyxialk: {
+				raidName: 'Le repaire d\'Onyxia',
+				bossTotal: 1,
 			},
-			za: {
-				raidName: "Zul'Aman",
-				bossTotal: 6,
+			icc: {
+				raidName: "Citadelle de la Couronne de Glace",
+				bossTotal: 12,
 			},
-			sunwell: {
-				raidName: "Plateau du Puits du Soleil",
-				bossTotal: 6,
-			}
+			rubis: {
+				raidName: "Sanctum Rubis",
+				bossTotal: 1,
+			},
 		},
 
 		bloodrage: {
