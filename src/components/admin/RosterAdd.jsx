@@ -39,15 +39,19 @@ function RosterAdd(props) {
         tank: [
             {
                 class: 'warrior',
-                spe: ['protection'],
+                spe: ['protection']
             },
             {
                 class: 'paladin',
-                spe: ['protection'],
+                spe: ['protection']
             },
             {
                 class: 'druid',
-                spe: ['féral'],
+                spe: ['féral']
+            },
+            {
+                class: 'dk',
+                spe: ['sang']
             }
         ],
         heal: [
@@ -89,6 +93,10 @@ function RosterAdd(props) {
                 class: 'rogue',
                 spe: ['assassinat', 'combat', 'finesse']
             },
+            {
+                class: 'dk',
+                spe: ['givre', 'impie']
+            }
         ],
         range : [
             {

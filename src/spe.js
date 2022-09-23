@@ -1,4 +1,5 @@
 const spe = {
+    dk: ['sang', 'givre', 'impie'],
     druid: ['féral', 'restau', 'équi'],
     hunter: ['bête', 'précision', 'survie'],
     mage: ['arcane', 'givre', 'feu'],
