@@ -1,5 +1,4 @@
 const fr = {
-    dk: 'chevalier de la mort',
     druid: 'druide',
     hunter: 'chasseur',
     mage: 'mage',
@@ -9,7 +8,6 @@ const fr = {
     shaman: 'chaman',
     warlock: 'démoniste',
     warrior: 'guerrier',
-    dk: 'dk',
 }
 
 export default fr

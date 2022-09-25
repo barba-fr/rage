@@ -1,5 +1,4 @@
 const spe = {
-    dk: ['sang', 'givre', 'impie'],
     druid: ['féral', 'restau', 'équi'],
     hunter: ['bête', 'précision', 'survie'],
     mage: ['arcane', 'givre', 'feu'],
@@ -9,7 +8,6 @@ const spe = {
     shaman: ['élémen', 'amelio', 'restau' ],
     warlock: ['affli', 'démono', 'destru'],
     warrior: ['armes', 'fureur', 'protec'],
-    dk: ['sang', 'givre', 'impie'],
 }
 
 export default spe;
