@@ -8,6 +8,7 @@ const fr = {
     shaman: 'chaman',
     warlock: 'démoniste',
     warrior: 'guerrier',
+    dk: 'dk',
 }
 
 export default fr
