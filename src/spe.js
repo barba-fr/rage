@@ -8,6 +8,7 @@ const spe = {
     shaman: ['élémen', 'amelio', 'restau' ],
     warlock: ['affli', 'démono', 'destru'],
     warrior: ['armes', 'fureur', 'protec'],
+    dk: ['sang', 'givre', 'impie'],
 }
 
 export default spe;
