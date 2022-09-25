@@ -1,4 +1,5 @@
 const fr = {
+    dk: 'chevalier de la mort',
     druid: 'druide',
     hunter: 'chasseur',
     mage: 'mage',

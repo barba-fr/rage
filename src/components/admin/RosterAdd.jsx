@@ -39,11 +39,11 @@ function RosterAdd(props) {
         tank: [
             {
                 class: 'warrior',
-                spe: ['protection'],
+                spe: ['protection']
             },
             {
                 class: 'paladin',
-                spe: ['protection'],
+                spe: ['protection']
             },
             {
                 class: 'druid',
