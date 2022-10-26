@@ -83,7 +83,7 @@ class RaidProgress extends React.Component {
             let largeurSegment = 100 / segments;
             if ( bossDown > 0 ) {
 
-                if ( this.props.raidId === "magtheridon" ) {
+                if ( this.props.metaData.bossTotal === 1 ) {
                     progressBar = 100
                 } else {
                     progressBar = ( bossDown - 1 ) * largeurSegment
